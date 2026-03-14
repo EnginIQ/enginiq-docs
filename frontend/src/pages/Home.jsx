@@ -76,13 +76,13 @@ const Home = () => {
       </section>
 
       {/* How it Works */}
-      <section className="py-24 bg-slate-900/50">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">How it works</h2>
-            <p className="text-xl text-slate-300">Three simple steps to let agents safely operate your database</p>
+      <section className="py-32 border-t border-white/[0.08]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-5xl font-semibold mb-4 tracking-tight">How it works</h2>
+            <p className="text-lg text-zinc-400 font-light">Three simple steps to let agents safely operate your database</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6">
             {[
               {
                 step: '01',
@@ -103,31 +103,36 @@ const Home = () => {
                 icon: Terminal
               }
             ].map((item, index) => (
-              <Card key={index} className="bg-slate-900 border-slate-800 p-8 hover:border-sky-500/50 transition-all duration-300 group">
-                <div className="flex items-start space-x-4">
-                  <span className="text-5xl font-bold text-slate-800 group-hover:text-sky-500/20 transition-colors">{item.step}</span>
-                  <div className="flex-1 space-y-4">
-                    <div className="w-12 h-12 rounded-lg bg-sky-500/10 flex items-center justify-center group-hover:bg-sky-500/20 transition-colors">
-                      <item.icon className="h-6 w-6 text-sky-400" />
+              <div key={index} className="relative group">
+                <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <Card className="relative bg-white/[0.02] border-white/[0.08] p-8 rounded-2xl hover:border-white/[0.15] transition-all h-full">
+                  <div className="space-y-6">
+                    <div className="flex items-start justify-between">
+                      <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-white/[0.05] border border-white/[0.08]">
+                        <item.icon className="h-5 w-5 text-zinc-300" />
+                      </div>
+                      <span className="text-5xl font-bold text-zinc-800/50">{item.step}</span>
                     </div>
-                    <h3 className="text-2xl font-semibold">{item.title}</h3>
-                    <p className="text-slate-300 leading-relaxed">{item.description}</p>
+                    <div className="space-y-3">
+                      <h3 className="text-xl font-semibold text-zinc-50">{item.title}</h3>
+                      <p className="text-zinc-400 leading-relaxed font-light text-sm">{item.description}</p>
+                    </div>
                   </div>
-                </div>
-              </Card>
+                </Card>
+              </div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Features */}
-      <section id="product" className="py-24">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Three pillars of safe database operations</h2>
-            <p className="text-xl text-slate-300">Guardrailed tools that let AI agents work with confidence</p>
+      <section id="product" className="py-32">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-5xl font-semibold mb-4 tracking-tight">Three pillars of safe database operations</h2>
+            <p className="text-lg text-zinc-400 font-light">Guardrailed tools that let AI agents work with confidence</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-3 gap-6">
             {[
               {
                 title: 'Database discovery',
@@ -148,22 +153,27 @@ const Home = () => {
                 icon: Code2
               }
             ].map((feature, index) => (
-              <Card key={index} className="bg-slate-900 border-slate-800 p-8 hover:border-sky-500/50 hover:shadow-xl hover:shadow-sky-500/10 transition-all duration-300 group">
-                <div className="space-y-6">
-                  <div className="w-14 h-14 rounded-xl bg-sky-500/10 flex items-center justify-center group-hover:bg-sky-500/20 group-hover:scale-110 transition-all">
-                    <feature.icon className="h-7 w-7 text-sky-400" />
+              <div key={index} className="relative group h-full">
+                <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                <Card className="relative bg-white/[0.02] border-white/[0.08] p-8 rounded-2xl hover:border-white/[0.15] transition-all h-full">
+                  <div className="space-y-6">
+                    <div className="flex items-center justify-center w-12 h-12 rounded-xl bg-white/[0.05] border border-white/[0.08]">
+                      <feature.icon className="h-5 w-5 text-zinc-300" />
+                    </div>
+                    <div className="space-y-3">
+                      <h3 className="text-xl font-semibold text-zinc-50">{feature.title}</h3>
+                      <p className="text-zinc-400 leading-relaxed font-light text-sm">{feature.description}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-2 pt-2">
+                      {feature.tools.map((tool, i) => (
+                        <span key={i} className="px-2.5 py-1 rounded-md bg-white/[0.03] border border-white/[0.08] text-zinc-400 text-xs font-mono">
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <h3 className="text-2xl font-semibold">{feature.title}</h3>
-                  <p className="text-slate-300 leading-relaxed">{feature.description}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {feature.tools.map((tool, i) => (
-                      <span key={i} className="px-3 py-1 rounded-md bg-slate-800 text-sky-400 text-sm font-mono border border-slate-700">
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </Card>
+                </Card>
+              </div>
             ))}
           </div>
         </div>
