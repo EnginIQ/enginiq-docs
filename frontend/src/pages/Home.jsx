@@ -283,87 +283,95 @@ const Home = () => {
       </section>
 
       {/* Code Example */}
-      <section className="py-24 bg-slate-900/50">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl font-bold mb-4">See it in action</h2>
-              <p className="text-xl text-slate-300">Simple commands, powerful operations</p>
-            </div>
-            <Card className="bg-slate-950 border-slate-800 overflow-hidden">
-              <div className="bg-slate-900 px-6 py-3 border-b border-slate-800 flex items-center space-x-2">
-                <div className="flex space-x-2">
-                  <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-amber-500"></div>
-                  <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
-                </div>
-                <span className="text-slate-400 text-sm ml-4">terminal</span>
+      <section className="py-32 border-t border-white/[0.08]">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-5xl font-semibold mb-4 tracking-tight">See it in action</h2>
+            <p className="text-lg text-zinc-400 font-light">Simple commands, powerful operations</p>
+          </div>
+          <Card className="bg-black/40 border-white/[0.08] overflow-hidden rounded-2xl">
+            <div className="bg-white/[0.02] px-5 py-3.5 border-b border-white/[0.08] flex items-center space-x-3">
+              <div className="flex space-x-1.5">
+                <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+                <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
+                <div className="w-3 h-3 rounded-full bg-zinc-700"></div>
               </div>
-              <div className="p-6 font-mono text-sm space-y-4">
-                <div>
-                  <span className="text-sky-400">$</span>
-                  <span className="text-slate-200 ml-2">enginiq doctor</span>
+              <span className="text-zinc-500 text-xs font-medium">terminal</span>
+            </div>
+            <div className="p-6 font-mono text-sm space-y-3">
+              <div className="flex">
+                <span className="text-zinc-500 select-none">$</span>
+                <span className="text-zinc-200 ml-2">enginiq doctor</span>
+              </div>
+              <div className="text-emerald-400 text-sm">✓ Database connection verified</div>
+              <div className="text-emerald-400 text-sm">✓ Schema access confirmed</div>
+              <div className="text-emerald-400 text-sm">✓ All tools ready</div>
+              <div className="mt-5 flex">
+                <span className="text-zinc-500 select-none">$</span>
+                <span className="text-zinc-200 ml-2">enginiq create-table posts --columns "title:text,content:text,published:boolean"</span>
+              </div>
+              <div className="text-zinc-400 text-sm">→ Creating table 'posts'...</div>
+              <div className="text-emerald-400 text-sm">✓ Table created successfully</div>
+              <div className="mt-5 flex">
+                <span className="text-zinc-500 select-none">$</span>
+                <span className="text-zinc-200 ml-2">enginiq add-column posts author_id:uuid</span>
+              </div>
+              <div className="text-emerald-400 text-sm">✓ Column 'author_id' added to 'posts'</div>
+            </div>
+          </Card>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="py-32">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="relative">
+            <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent rounded-3xl"></div>
+            <Card className="relative bg-white/[0.02] border-white/[0.08] p-12 rounded-3xl text-center">
+              <div className="space-y-8">
+                <div className="space-y-4">
+                  <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">Ready to let agents operate your database safely?</h2>
+                  <p className="text-lg text-zinc-400 max-w-2xl mx-auto font-light">
+                    Get started with EnginiQ today and unlock the power of AI-driven database operations with built-in guardrails.
+                  </p>
                 </div>
-                <div className="text-emerald-500">✓ Database connection verified</div>
-                <div className="text-emerald-500">✓ Schema access confirmed</div>
-                <div className="text-emerald-500">✓ All tools ready</div>
-                <div className="mt-6">
-                  <span className="text-sky-400">$</span>
-                  <span className="text-slate-200 ml-2">enginiq create-table posts --columns "title:text,content:text,published:boolean"</span>
+                <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                  <Button className="bg-zinc-50 hover:bg-white text-zinc-900 font-medium text-sm h-11 px-6 rounded-lg shadow-lg shadow-white/10 group">
+                    Get started
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+                  </Button>
+                  <Button variant="outline" className="border-white/10 text-zinc-300 hover:bg-white/5 hover:text-zinc-50 text-sm h-11 px-6 rounded-lg">
+                    View on GitHub
+                  </Button>
                 </div>
-                <div className="text-sky-300">→ Creating table 'posts'...</div>
-                <div className="text-emerald-500">✓ Table created successfully</div>
-                <div className="mt-6">
-                  <span className="text-sky-400">$</span>
-                  <span className="text-slate-200 ml-2">enginiq add-column posts author_id:uuid</span>
-                </div>
-                <div className="text-emerald-500">✓ Column 'author_id' added to 'posts'</div>
               </div>
             </Card>
           </div>
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
-          <Card className="bg-gradient-to-br from-sky-500/10 to-slate-900 border-sky-500/30 p-12 text-center">
-            <h2 className="text-4xl font-bold mb-6">Ready to let agents operate your database safely?</h2>
-            <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-              Get started with EnginiQ today and unlock the power of AI-driven database operations with built-in guardrails.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button className="bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold text-lg px-8 py-6 group">
-                Get started
-                <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              <Button variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-900 hover:text-sky-400 text-lg px-8 py-6">
-                View on GitHub
-              </Button>
-            </div>
-          </Card>
-        </div>
-      </section>
-
       {/* Footer */}
-      <footer className="border-t border-slate-800 py-12 bg-slate-900/50">
-        <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+      <footer className="border-t border-white/[0.08] py-12 bg-[#0A0A0A]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-6 md:space-y-0 pb-8">
             <div className="flex items-center space-x-3">
-              <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-sky-500">
-                <span className="text-slate-950 font-bold text-sm">EQ</span>
+              <div className="flex items-center justify-center w-8 h-8 rounded-md bg-gradient-to-br from-zinc-700 to-zinc-800 border border-white/10">
+                <span className="text-zinc-100 font-semibold text-sm">EQ</span>
               </div>
               <div>
-                <p className="text-slate-300 text-sm">EnginiQ – Infrastructure runtime for AI agents</p>
-                <p className="text-slate-500 text-xs">v0.1 · Database</p>
+                <p className="text-zinc-400 text-sm font-light">EnginiQ – Infrastructure runtime for AI agents</p>
+                <p className="text-zinc-600 text-xs mt-0.5">v0.1 · Database</p>
               </div>
             </div>
             <nav className="flex items-center space-x-6">
-              <a href="/docs" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Docs</a>
-              <a href="https://github.com/enginiq" target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">GitHub</a>
-              <a href="/terms" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Terms</a>
-              <a href="/privacy" className="text-slate-400 hover:text-sky-400 transition-colors text-sm">Privacy</a>
+              <a href="/docs" className="text-zinc-500 hover:text-zinc-300 transition-colors text-sm">Docs</a>
+              <a href="https://github.com/enginiq" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-zinc-300 transition-colors text-sm">GitHub</a>
+              <a href="/terms" className="text-zinc-500 hover:text-zinc-300 transition-colors text-sm">Terms</a>
+              <a href="/privacy" className="text-zinc-500 hover:text-zinc-300 transition-colors text-sm">Privacy</a>
             </nav>
+          </div>
+          <div className="pt-8 border-t border-white/[0.05]">
+            <p className="text-zinc-600 text-xs text-center">© 2025 EnginiQ. All rights reserved.</p>
           </div>
         </div>
       </footer>
