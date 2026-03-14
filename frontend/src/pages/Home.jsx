@@ -21,25 +21,22 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-50">
+    <div className="min-h-screen bg-[#0A0A0A] text-zinc-50">
       {/* Header */}
-      <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/95 backdrop-blur supports-[backdrop-filter]:bg-slate-950/75">
-        <div className="container mx-auto px-6 py-4">
+      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.08] bg-[#0A0A0A]/80 backdrop-blur-xl">
+        <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-sky-500">
-                <span className="text-slate-950 font-bold text-lg">EQ</span>
+              <div className="flex items-center justify-center w-8 h-8 rounded-md bg-gradient-to-br from-zinc-700 to-zinc-800 border border-white/10">
+                <span className="text-zinc-100 font-semibold text-sm">EQ</span>
               </div>
-              <div>
-                <h1 className="text-xl font-bold text-slate-50">EnginiQ</h1>
-                <p className="text-xs text-slate-400">Infra runtime for AI agents</p>
-              </div>
+              <span className="text-base font-semibold text-zinc-50 tracking-tight">EnginiQ</span>
             </div>
-            <nav className="hidden md:flex items-center space-x-8">
-              <a href="#product" className="text-slate-300 hover:text-sky-400 transition-colors">Product</a>
-              <a href="/docs" className="text-slate-300 hover:text-sky-400 transition-colors">Docs</a>
-              <a href="https://github.com/enginiq" target="_blank" rel="noopener noreferrer" className="text-slate-300 hover:text-sky-400 transition-colors">GitHub</a>
-              <Button className="bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold">
+            <nav className="hidden md:flex items-center space-x-1">
+              <a href="#product" className="text-sm text-zinc-400 hover:text-zinc-50 transition-colors px-3 py-2 rounded-md hover:bg-white/5">Product</a>
+              <a href="/docs" className="text-sm text-zinc-400 hover:text-zinc-50 transition-colors px-3 py-2 rounded-md hover:bg-white/5">Docs</a>
+              <a href="https://github.com/enginiq" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-400 hover:text-zinc-50 transition-colors px-3 py-2 rounded-md hover:bg-white/5">GitHub</a>
+              <Button className="ml-4 bg-zinc-50 hover:bg-white text-zinc-900 font-medium text-sm h-9 px-4 rounded-md shadow-sm">
                 Get started
               </Button>
             </nav>
@@ -48,45 +45,31 @@ const Home = () => {
       </header>
 
       {/* Hero */}
-      <section className="relative overflow-hidden py-24 md:py-32">
-        <div className="absolute inset-0 bg-gradient-to-b from-sky-500/5 via-transparent to-transparent"></div>
-        <div className="container mx-auto px-6 relative">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className={`space-y-8 transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-              <div className="inline-block">
-                <span className="inline-flex items-center space-x-2 px-4 py-2 rounded-full bg-slate-900 border border-slate-800 text-sm text-sky-400">
-                  <span className="w-2 h-2 rounded-full bg-sky-400 animate-pulse"></span>
-                  <span>v0.1 · Database runtime</span>
-                </span>
+      <section className="relative pt-32 pb-20 md:pt-40 md:pb-32">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(120,119,198,0.05),transparent_50%)]"></div>
+        <div className="max-w-7xl mx-auto px-6 relative">
+          <div className="max-w-4xl mx-auto text-center space-y-8">
+            <div className={`space-y-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs font-medium text-zinc-400">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                <span>v0.1 · Database runtime</span>
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold leading-tight">
-                Infrastructure runtime for{' '}
-                <span className="text-sky-400">AI agents</span>
+              <h1 className="text-5xl md:text-7xl font-semibold leading-[1.1] tracking-tight">
+                Infrastructure runtime<br />
+                for <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-100 to-zinc-400">AI agents</span>
               </h1>
-              <p className="text-xl text-slate-300 leading-relaxed">
+              <p className="text-lg md:text-xl text-zinc-400 leading-relaxed max-w-3xl mx-auto font-light">
                 EnginiQ lets AI agents safely operate your Postgres databases via a guardrailed CLI and MCP server. Schema discovery, migrations, and safe queries—no raw SQL, no copy-paste migrations.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button className="bg-sky-500 hover:bg-sky-400 text-slate-950 font-semibold text-lg px-8 py-6 group">
-                  Get started
-                  <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-                </Button>
-                <Button variant="outline" className="border-slate-700 text-slate-300 hover:bg-slate-900 hover:text-sky-400 text-lg px-8 py-6">
-                  Read the docs
-                </Button>
-              </div>
             </div>
-            <div className={`relative transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-              <div className="relative rounded-2xl overflow-hidden border border-slate-800 shadow-2xl">
-                <img 
-                  src="https://images.unsplash.com/photo-1590010358311-55d7c0769a3a?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1ODh8MHwxfHNlYXJjaHwxfHx0ZXJtaW5hbCUyMGNvZGUlMjBpbnRlcmZhY2UlMjBkYXJrfGVufDB8fHxibGFja3wxNzczNDYyNzU1fDA&ixlib=rb-4.1.0&q=85" 
-                  alt="Terminal interface"
-                  className="w-full h-auto object-cover"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-60"></div>
-              </div>
-              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-sky-500/20 rounded-full blur-3xl"></div>
-              <div className="absolute -top-6 -right-6 w-32 h-32 bg-sky-500/10 rounded-full blur-3xl"></div>
+            <div className={`flex flex-col sm:flex-row gap-3 justify-center transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+              <Button className="bg-zinc-50 hover:bg-white text-zinc-900 font-medium text-sm h-11 px-6 rounded-lg shadow-lg shadow-white/10 group">
+                Get started
+                <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
+              </Button>
+              <Button variant="outline" className="border-white/10 text-zinc-300 hover:bg-white/5 hover:text-zinc-50 text-sm h-11 px-6 rounded-lg">
+                Read the docs
+              </Button>
             </div>
           </div>
         </div>
