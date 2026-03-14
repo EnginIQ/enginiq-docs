@@ -10,18 +10,24 @@ html {
 
 /* Custom scrollbar for dark theme */
 ::-webkit-scrollbar {
-    width: 10px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-    background: #020617;
+    background: #0A0A0A;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #334155;
-    border-radius: 5px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #475569;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Selection color */
+::selection {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
 }
