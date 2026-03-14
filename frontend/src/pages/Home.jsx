@@ -180,70 +180,68 @@ const Home = () => {
       </section>
 
       {/* Safety */}
-      <section className="py-24 bg-slate-900/50">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-12">
-              <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-sky-500/10 mb-6">
-                <Shield className="h-8 w-8 text-sky-400" />
-              </div>
-              <h2 className="text-4xl font-bold mb-4">Safety built in</h2>
-              <p className="text-xl text-slate-300">Guardrailed by default, protected by design</p>
+      <section className="py-32 border-t border-white/[0.08]">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-white/[0.05] border border-white/[0.08] mb-6">
+              <Shield className="h-6 w-6 text-zinc-300" />
             </div>
-            <Card className="bg-slate-900 border-slate-800 p-8">
-              <div className="grid md:grid-cols-2 gap-8">
-                <div className="space-y-4">
-                  <h3 className="text-xl font-semibold flex items-center space-x-2">
-                    <Lock className="h-5 w-5 text-sky-400" />
-                    <span>Dangerous operations blocked</span>
-                  </h3>
-                  <ul className="space-y-3">
-                    {[
-                      'DROP DATABASE',
-                      'DROP SCHEMA',
-                      'TRUNCATE',
-                      'ALTER ROLE'
-                    ].map((item, i) => (
-                      <li key={i} className="flex items-center space-x-3 text-slate-300">
-                        <CheckCircle2 className="h-5 w-5 text-emerald-500 flex-shrink-0" />
-                        <span className="font-mono text-sm">{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="space-y-4">
-                  <h3 className="text-xl font-semibold flex items-center space-x-2">
-                    <Shield className="h-5 w-5 text-sky-400" />
-                    <span>Protected resources</span>
-                  </h3>
-                  <ul className="space-y-3">
-                    {[
-                      'DELETE without WHERE blocked',
-                      'auth_* tables protected',
-                      'storage_* tables protected',
-                      'supabase_* tables protected'
-                    ].map((item, i) => (
-                      <li key={i} className="flex items-center space-x-3 text-slate-300">
-                        <CheckCircle2 className="h-5 w-5 text-emerald-500 flex-shrink-0" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </Card>
+            <h2 className="text-3xl md:text-5xl font-semibold mb-4 tracking-tight">Safety built in</h2>
+            <p className="text-lg text-zinc-400 font-light">Guardrailed by default, protected by design</p>
           </div>
+          <Card className="bg-white/[0.02] border-white/[0.08] p-10 rounded-2xl">
+            <div className="grid md:grid-cols-2 gap-12">
+              <div className="space-y-6">
+                <div className="flex items-center space-x-2.5">
+                  <Lock className="h-5 w-5 text-zinc-400" />
+                  <h3 className="text-lg font-semibold text-zinc-50">Dangerous operations blocked</h3>
+                </div>
+                <ul className="space-y-3.5">
+                  {[
+                    'DROP DATABASE',
+                    'DROP SCHEMA',
+                    'TRUNCATE',
+                    'ALTER ROLE'
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center space-x-3 text-zinc-400">
+                      <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0" />
+                      <span className="font-mono text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="space-y-6">
+                <div className="flex items-center space-x-2.5">
+                  <Shield className="h-5 w-5 text-zinc-400" />
+                  <h3 className="text-lg font-semibold text-zinc-50">Protected resources</h3>
+                </div>
+                <ul className="space-y-3.5">
+                  {[
+                    'DELETE without WHERE blocked',
+                    'auth_* tables protected',
+                    'storage_* tables protected',
+                    'supabase_* tables protected'
+                  ].map((item, i) => (
+                    <li key={i} className="flex items-center space-x-3 text-zinc-400">
+                      <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0" />
+                      <span className="text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </Card>
         </div>
       </section>
 
       {/* Packages */}
-      <section className="py-24">
-        <div className="container mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-4">Three packages, one ecosystem</h2>
-            <p className="text-xl text-slate-300">Install what you need, when you need it</p>
+      <section className="py-32">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-20">
+            <h2 className="text-3xl md:text-5xl font-semibold mb-4 tracking-tight">Three packages, one ecosystem</h2>
+            <p className="text-lg text-zinc-400 font-light">Install what you need, when you need it</p>
           </div>
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
             {[
               {
                 name: 'enginiq-core',
@@ -261,24 +259,24 @@ const Home = () => {
                 badge: 'MCP'
               }
             ].map((pkg, index) => (
-              <Card key={index} className="bg-slate-900 border-slate-800 p-8 hover:border-sky-500/50 transition-all duration-300">
+              <Card key={index} className="bg-white/[0.02] border-white/[0.08] p-8 rounded-2xl hover:border-white/[0.15] transition-all">
                 <div className="space-y-4">
-                  <span className="inline-block px-3 py-1 rounded-md bg-sky-500/10 text-sky-400 text-xs font-semibold">
+                  <span className="inline-block px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.08] text-zinc-400 text-xs font-medium">
                     {pkg.badge}
                   </span>
-                  <h3 className="text-xl font-mono font-semibold text-sky-400">{pkg.name}</h3>
-                  <p className="text-slate-300 leading-relaxed">{pkg.description}</p>
+                  <h3 className="text-lg font-mono font-semibold text-zinc-50">{pkg.name}</h3>
+                  <p className="text-zinc-400 leading-relaxed font-light text-sm">{pkg.description}</p>
                 </div>
               </Card>
             ))}
           </div>
-          <Card className="bg-slate-900 border-slate-800 p-8 max-w-2xl mx-auto">
-            <h3 className="text-xl font-semibold mb-4">Quick install</h3>
-            <div className="bg-slate-950 rounded-lg p-4 border border-slate-800 font-mono text-sm">
-              <div className="text-slate-400 mb-2"># Install globally</div>
-              <div className="text-slate-200">npm install -g enginiq-cli</div>
-              <div className="text-slate-400 mt-4 mb-2"># Configure with .enginiqrc.json</div>
-              <div className="text-slate-200">enginiq doctor</div>
+          <Card className="bg-white/[0.02] border-white/[0.08] p-8 rounded-2xl max-w-3xl mx-auto">
+            <h3 className="text-base font-semibold mb-5 text-zinc-50">Quick install</h3>
+            <div className="bg-black/40 rounded-lg p-5 border border-white/[0.08] font-mono text-sm">
+              <div className="text-zinc-500 mb-2 text-xs"># Install globally</div>
+              <div className="text-zinc-200 mb-1">npm install -g enginiq-cli</div>
+              <div className="text-zinc-500 mt-5 mb-2 text-xs"># Configure with .enginiqrc.json</div>
+              <div className="text-zinc-200">enginiq doctor</div>
             </div>
           </Card>
         </div>
