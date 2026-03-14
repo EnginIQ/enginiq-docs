@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { Button } from '../components/ui/button';
-import { Card } from '../components/ui/card';
-import { 
-  Database, 
-  Shield, 
-  Terminal, 
-  GitBranch, 
-  CheckCircle2, 
+"use client";
+
+import { useEffect, useState } from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import {
+  Database,
+  Shield,
+  Terminal,
+  GitBranch,
+  CheckCircle2,
   ArrowRight,
   Code2,
   Layers,
-  Lock
-} from 'lucide-react';
+  Lock,
+} from "lucide-react";
 
-const Home = () => {
+export default function HomePage() {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
@@ -34,7 +37,7 @@ const Home = () => {
             </div>
             <nav className="hidden md:flex items-center space-x-1">
               <a href="#product" className="text-sm text-zinc-400 hover:text-zinc-50 transition-colors px-3 py-2 rounded-md hover:bg-white/5">Product</a>
-              <a href="/docs" className="text-sm text-zinc-400 hover:text-zinc-50 transition-colors px-3 py-2 rounded-md hover:bg-white/5">Docs</a>
+              <Link href="/docs" className="text-sm text-zinc-400 hover:text-zinc-50 transition-colors px-3 py-2 rounded-md hover:bg-white/5">Docs</Link>
               <a href="https://github.com/enginiq" target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-400 hover:text-zinc-50 transition-colors px-3 py-2 rounded-md hover:bg-white/5">GitHub</a>
               <Button className="ml-4 bg-zinc-50 hover:bg-white text-zinc-900 font-medium text-sm h-9 px-4 rounded-md shadow-sm">
                 Get started
@@ -49,20 +52,21 @@ const Home = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(120,119,198,0.05),transparent_50%)]"></div>
         <div className="max-w-7xl mx-auto px-6 relative">
           <div className="max-w-4xl mx-auto text-center space-y-8">
-            <div className={`space-y-6 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <div className={`space-y-6 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
               <div className="inline-flex items-center space-x-2 px-3 py-1.5 rounded-full bg-white/[0.03] border border-white/[0.08] text-xs font-medium text-zinc-400">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
                 <span>v0.1 · Database runtime</span>
               </div>
               <h1 className="text-5xl md:text-7xl font-semibold leading-[1.1] tracking-tight">
-                Infrastructure runtime<br />
+                Infrastructure runtime
+                <br />
                 for <span className="text-transparent bg-clip-text bg-gradient-to-r from-zinc-100 to-zinc-400">AI agents</span>
               </h1>
               <p className="text-lg md:text-xl text-zinc-400 leading-relaxed max-w-3xl mx-auto font-light">
                 EnginiQ lets AI agents safely operate your Postgres databases via a guardrailed CLI and MCP server. Schema discovery, migrations, and safe queries—no raw SQL, no copy-paste migrations.
               </p>
             </div>
-            <div className={`flex flex-col sm:flex-row gap-3 justify-center transition-all duration-700 delay-100 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <div className={`flex flex-col sm:flex-row gap-3 justify-center transition-all duration-700 delay-100 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}>
               <Button className="bg-zinc-50 hover:bg-white text-zinc-900 font-medium text-sm h-11 px-6 rounded-lg shadow-lg shadow-white/10 group">
                 Get started
                 <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
@@ -84,24 +88,9 @@ const Home = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              {
-                step: '01',
-                title: 'Connect',
-                description: 'Point EnginiQ at your Postgres database using .enginiqrc.json or environment variables.',
-                icon: Database
-              },
-              {
-                step: '02',
-                title: 'Expose',
-                description: 'Use the CLI locally or run the MCP server for Cursor, Claude, or your own AI tooling.',
-                icon: Layers
-              },
-              {
-                step: '03',
-                title: 'Let agents run tools',
-                description: 'Agents can now discover schemas, create tables, add columns, run migrations, and execute parameterized queries—all guardrailed.',
-                icon: Terminal
-              }
+              { step: "01", title: "Connect", description: "Point EnginiQ at your Postgres database using .enginiqrc.json or environment variables.", icon: Database },
+              { step: "02", title: "Expose", description: "Use the CLI locally or run the MCP server for Cursor, Claude, or your own AI tooling.", icon: Layers },
+              { step: "03", title: "Let agents run tools", description: "Agents can now discover schemas, create tables, add columns, run migrations, and execute parameterized queries—all guardrailed.", icon: Terminal },
             ].map((item, index) => (
               <div key={index} className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -134,24 +123,9 @@ const Home = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              {
-                title: 'Database discovery',
-                description: 'Tools like list_tables, describe_table, and get_schema give agents a clear view of your schema without fragile parsing of raw SQL.',
-                tools: ['list_tables', 'describe_table', 'get_schema'],
-                icon: Database
-              },
-              {
-                title: 'Schema changes & migrations',
-                description: 'Guardrailed tools for create_table, add_column, and run_migration let agents evolve your schema while EnginiQ enforces safety rules.',
-                tools: ['create_table', 'add_column', 'run_migration'],
-                icon: GitBranch
-              },
-              {
-                title: 'Built for MCP & IDEs',
-                description: 'Expose EnginiQ as an MCP server so agents in Cursor, Claude, or your own tooling can call database operations directly from the editor.',
-                tools: ['MCP Server', 'IDE Integration', 'Direct calls'],
-                icon: Code2
-              }
+              { title: "Database discovery", description: "Tools like list_tables, describe_table, and get_schema give agents a clear view of your schema without fragile parsing of raw SQL.", tools: ["list_tables", "describe_table", "get_schema"], icon: Database },
+              { title: "Schema changes & migrations", description: "Guardrailed tools for create_table, add_column, and run_migration let agents evolve your schema while EnginiQ enforces safety rules.", tools: ["create_table", "add_column", "run_migration"], icon: GitBranch },
+              { title: "Built for MCP & IDEs", description: "Expose EnginiQ as an MCP server so agents in Cursor, Claude, or your own tooling can call database operations directly from the editor.", tools: ["MCP Server", "IDE Integration", "Direct calls"], icon: Code2 },
             ].map((feature, index) => (
               <div key={index} className="relative group h-full">
                 <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -197,12 +171,7 @@ const Home = () => {
                   <h3 className="text-lg font-semibold text-zinc-50">Dangerous operations blocked</h3>
                 </div>
                 <ul className="space-y-3.5">
-                  {[
-                    'DROP DATABASE',
-                    'DROP SCHEMA',
-                    'TRUNCATE',
-                    'ALTER ROLE'
-                  ].map((item, i) => (
+                  {["DROP DATABASE", "DROP SCHEMA", "TRUNCATE", "ALTER ROLE"].map((item, i) => (
                     <li key={i} className="flex items-center space-x-3 text-zinc-400">
                       <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0" />
                       <span className="font-mono text-sm">{item}</span>
@@ -216,12 +185,7 @@ const Home = () => {
                   <h3 className="text-lg font-semibold text-zinc-50">Protected resources</h3>
                 </div>
                 <ul className="space-y-3.5">
-                  {[
-                    'DELETE without WHERE blocked',
-                    'auth_* tables protected',
-                    'storage_* tables protected',
-                    'supabase_* tables protected'
-                  ].map((item, i) => (
+                  {["DELETE without WHERE blocked", "auth_* tables protected", "storage_* tables protected", "supabase_* tables protected"].map((item, i) => (
                     <li key={i} className="flex items-center space-x-3 text-zinc-400">
                       <CheckCircle2 className="h-4 w-4 text-emerald-400 flex-shrink-0" />
                       <span className="text-sm">{item}</span>
@@ -243,27 +207,13 @@ const Home = () => {
           </div>
           <div className="grid md:grid-cols-3 gap-6 mb-12">
             {[
-              {
-                name: 'enginiq-core',
-                description: 'Runtime engine and database tools. The foundation of the EnginiQ ecosystem.',
-                badge: 'Core'
-              },
-              {
-                name: 'enginiq-cli',
-                description: 'CLI for humans and CI. Schema operations, migrations, and database doctor.',
-                badge: 'CLI'
-              },
-              {
-                name: 'enginiq-mcp',
-                description: 'MCP server for IDE agents. Enable Cursor, Claude, and other AI tools.',
-                badge: 'MCP'
-              }
+              { name: "enginiq-core", description: "Runtime engine and database tools. The foundation of the EnginiQ ecosystem.", badge: "Core" },
+              { name: "enginiq-cli", description: "CLI for humans and CI. Schema operations, migrations, and database doctor.", badge: "CLI" },
+              { name: "enginiq-mcp", description: "MCP server for IDE agents. Enable Cursor, Claude, and other AI tools.", badge: "MCP" },
             ].map((pkg, index) => (
               <Card key={index} className="bg-white/[0.02] border-white/[0.08] p-8 rounded-2xl hover:border-white/[0.15] transition-all">
                 <div className="space-y-4">
-                  <span className="inline-block px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.08] text-zinc-400 text-xs font-medium">
-                    {pkg.badge}
-                  </span>
+                  <span className="inline-block px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.08] text-zinc-400 text-xs font-medium">{pkg.badge}</span>
                   <h3 className="text-lg font-mono font-semibold text-zinc-50">{pkg.name}</h3>
                   <p className="text-zinc-400 leading-relaxed font-light text-sm">{pkg.description}</p>
                 </div>
@@ -308,15 +258,15 @@ const Home = () => {
               <div className="text-emerald-400 text-sm">✓ All tools ready</div>
               <div className="mt-5 flex">
                 <span className="text-zinc-500 select-none">$</span>
-                <span className="text-zinc-200 ml-2">enginiq create-table posts --columns "title:text,content:text,published:boolean"</span>
+                <span className="text-zinc-200 ml-2">enginiq create-table posts --columns &quot;title:text,content:text,published:boolean&quot;</span>
               </div>
-              <div className="text-zinc-400 text-sm">→ Creating table 'posts'...</div>
+              <div className="text-zinc-400 text-sm">→ Creating table &apos;posts&apos;...</div>
               <div className="text-emerald-400 text-sm">✓ Table created successfully</div>
               <div className="mt-5 flex">
                 <span className="text-zinc-500 select-none">$</span>
                 <span className="text-zinc-200 ml-2">enginiq add-column posts author_id:uuid</span>
               </div>
-              <div className="text-emerald-400 text-sm">✓ Column 'author_id' added to 'posts'</div>
+              <div className="text-emerald-400 text-sm">✓ Column &apos;author_id&apos; added to &apos;posts&apos;</div>
             </div>
           </Card>
         </div>
@@ -364,10 +314,10 @@ const Home = () => {
               </div>
             </div>
             <nav className="flex items-center space-x-6">
-              <a href="/docs" className="text-zinc-500 hover:text-zinc-300 transition-colors text-sm">Docs</a>
+              <Link href="/docs" className="text-zinc-500 hover:text-zinc-300 transition-colors text-sm">Docs</Link>
               <a href="https://github.com/enginiq" target="_blank" rel="noopener noreferrer" className="text-zinc-500 hover:text-zinc-300 transition-colors text-sm">GitHub</a>
-              <a href="/terms" className="text-zinc-500 hover:text-zinc-300 transition-colors text-sm">Terms</a>
-              <a href="/privacy" className="text-zinc-500 hover:text-zinc-300 transition-colors text-sm">Privacy</a>
+              <Link href="/terms" className="text-zinc-500 hover:text-zinc-300 transition-colors text-sm">Terms</Link>
+              <Link href="/privacy" className="text-zinc-500 hover:text-zinc-300 transition-colors text-sm">Privacy</Link>
             </nav>
           </div>
           <div className="pt-8 border-t border-white/[0.05]">
@@ -377,6 +327,4 @@ const Home = () => {
       </footer>
     </div>
   );
-};
-
-export default Home;
+}
