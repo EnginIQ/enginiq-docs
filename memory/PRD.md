@@ -63,20 +63,21 @@ Build a professional landing page for EnginiQ - an infrastructure runtime for AI
 
 #### Phase 1: Frontend-Only Landing Page (Complete)
 - ✅ Created `/app/frontend/src/pages/Home.jsx` with all required sections
-- ✅ Strict color palette implementation (Slate 950/900, Sky 500, no purple)
-- ✅ Professional dark dev-tool aesthetic
-- ✅ Responsive grid layouts (3-column features, packages)
-- ✅ Micro-animations: fade-in hero, hover states on cards, button transitions
+- ✅ **Professional redesign inspired by top developer tools (Vercel, Supabase, Linear)**
+- ✅ Refined color palette: Pure black (#0A0A0A) background, zinc color system, subtle white opacity borders
+- ✅ Professional typography: Semibold headings (not bold), font-light descriptions, tight tracking
+- ✅ Sophisticated spacing: py-32 sections, generous whitespace, proper card padding
+- ✅ Refined component styling: Rounded-2xl cards, subtle gradients, professional borders (white/[0.08])
+- ✅ Better button design: Zinc-50 CTAs (not bright colors), subtle shadows, refined sizing
+- ✅ Professional header: Fixed position, backdrop-blur-xl, minimal design
+- ✅ Centered hero layout: Clean, focused, professional text hierarchy
+- ✅ Micro-animations: Subtle hover states, smooth transitions (not aggressive)
 - ✅ Inter + JetBrains Mono fonts integrated
-- ✅ AI-selected terminal/code images integrated
-- ✅ Terminal code block with syntax highlighting
-- ✅ Sticky header with backdrop blur
+- ✅ Terminal code block with professional styling (black/40 bg, refined syntax colors)
 - ✅ All icons from lucide-react (no emoji)
-- ✅ Smooth scroll behavior
-- ✅ Custom scrollbar styling
-- ✅ Badge components for version and tool names
-- ✅ Safety section with emerald checkmarks
-- ✅ Footer with proper links and branding
+- ✅ Smooth scroll behavior with refined scrollbar
+- ✅ Professional badge components with subtle backgrounds
+- ✅ Clean footer with copyright and proper spacing
 
 #### Components Used
 - Shadcn Button component
