@@ -1,0 +1,108 @@
+---
+title: "AI-safe database migrations: a practical launch checklist"
+description: "A practical checklist for AI-safe database migrations covering schema inspection, migration recording, Postgres locking concerns, and protected resources."
+publishedAt: "2026-03-14"
+readingTime: "7 min read"
+keywords:
+  - "AI-safe database migrations"
+  - "safe AI migrations"
+  - "database migration guardrails"
+author: "EnginiQ Team"
+sources:
+  - label: "Google Search Central people-first content"
+    url: "https://developers.google.com/search/docs/fundamentals/creating-helpful-content"
+  - label: "PostgreSQL information_schema"
+    url: "https://www.postgresql.org/docs/current/information-schema.html"
+  - label: "PostgreSQL ALTER TABLE"
+    url: "https://www.postgresql.org/docs/current/sql-altertable.html"
+  - label: "PostgreSQL CREATE TABLE"
+    url: "https://www.postgresql.org/docs/current/static/sql-createtable.html"
+---
+
+# AI-safe database migrations: a practical launch checklist
+
+There is a difference between “AI can generate migration SQL” and “AI can help run safe database migrations.”
+
+If you want a migration workflow people can actually trust, you need a tighter operational model than raw prompt-to-SQL generation.
+
+## 1. Read schema state before planning any change
+
+The PostgreSQL documentation positions the `information_schema` as a stable way to inspect objects in the current database. That matters because any migration workflow should begin with a reliable read of the current state.
+
+A safe sequence starts with:
+
+- listing tables
+- inspecting columns
+- checking whether the target structure already exists
+
+This helps the agent avoid duplicate or unnecessary changes and gives the human reviewer more context.
+
+## 2. Prefer explicit operations over arbitrary migration text
+
+PostgreSQL’s `CREATE TABLE` and `ALTER TABLE` commands are powerful, but power is exactly why you should not let an AI system invent unrestricted database changes in a black box.
+
+A safer system exposes explicit operations like:
+
+- create table
+- add column
+- run migration
+
+That lets you define what “normal” schema evolution looks like and reserve unusual operations for manual handling.
+
+## 3. Treat locking as part of migration safety
+
+One of the most important details in the PostgreSQL `ALTER TABLE` documentation is that lock levels vary by subcommand, and some changes can take strong locks. That means a migration is not only a syntax change. It is a runtime event that can affect application behavior.
+
+This is why “AI-safe migrations” must include operational awareness. At minimum, your workflow should distinguish between:
+
+- harmless inspection
+- simple additive changes
+- potentially disruptive table rewrites or lock-heavy operations
+
+## 4. Record migrations as named events
+
+If an agent can make changes, the system should record what happened. A named migration table or migration log gives you:
+
+- deduplication
+- traceability
+- a consistent review trail
+
+This is especially important when AI is involved because trust comes from observability, not just output quality.
+
+## 5. Protect internal or sensitive resources
+
+Some database objects should be outside the default reach of an agent runtime. In practice, that usually includes internal tables, auth-related objects, and storage metadata.
+
+Even if your product supports mutation tools, it should still block or isolate especially sensitive namespaces by default.
+
+## 6. Use parameterized queries for validation steps
+
+Validation often happens after a migration: insert a row, query the schema, verify the expected column exists, and so on.
+
+That is exactly where parameterized queries help. They keep the validation phase more predictable and reduce the temptation to concatenate arbitrary SQL strings into the workflow.
+
+## 7. Keep the human in the loop
+
+This is the most boring advice and also the most useful one. Human review is still the right default for anything that mutates production state.
+
+The best AI migration workflow is not one where the model acts alone. It is one where the model:
+
+1. discovers the current schema
+2. proposes a narrow change
+3. applies that change through a constrained interface
+4. shows the result for review
+
+## Write for trust, not only for speed
+
+Google’s Search Central guidance on people-first content is also a good product lesson here: useful content and useful tools both work better when they are built for real user outcomes rather than shortcuts.
+
+For database migrations, the real user outcome is not “the AI wrote SQL fast.” It is “the schema changed safely, predictably, and with enough context that the team trusts the result.”
+
+That is the bar worth optimizing for.
+
+## Sources and further reading
+
+- [Google Search Central: creating helpful, reliable, people-first content](https://developers.google.com/search/docs/fundamentals/creating-helpful-content)
+- [PostgreSQL information schema](https://www.postgresql.org/docs/current/information-schema.html)
+- [PostgreSQL `ALTER TABLE`](https://www.postgresql.org/docs/current/sql-altertable.html)
+- [PostgreSQL `CREATE TABLE`](https://www.postgresql.org/docs/current/static/sql-createtable.html)

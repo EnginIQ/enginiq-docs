@@ -1,0 +1,110 @@
+---
+title: "How to use a Postgres MCP server with AI agents"
+description: "Learn how a Postgres MCP server helps AI agents inspect schema, plan changes, and run safer database workflows with structured tools."
+publishedAt: "2026-03-14"
+readingTime: "5 min read"
+keywords:
+  - "Postgres MCP server"
+  - "MCP database server"
+  - "AI agents Postgres"
+author: "EnginiQ Team"
+sources:
+  - label: "Model Context Protocol tools"
+    url: "https://modelcontextprotocol.io/docs/concepts/tools"
+  - label: "PostgreSQL CREATE TABLE"
+    url: "https://www.postgresql.org/docs/current/static/sql-createtable.html"
+  - label: "PostgreSQL ALTER TABLE"
+    url: "https://www.postgresql.org/docs/current/sql-altertable.html"
+  - label: "Supabase docs"
+    url: "https://supabase.com/docs"
+---
+
+# How to use a Postgres MCP server with AI agents
+
+If you are building with Cursor, Claude-style IDE agents, or your own assistant workflows, a **Postgres MCP server** is one of the cleanest ways to give the model structured access to database operations.
+
+Instead of stuffing prompt instructions with database rules, you expose explicit tools.
+
+## What MCP changes
+
+The official Model Context Protocol documentation describes tools as named capabilities with schemas that language models can discover and invoke. That means the model is no longer guessing the interface. It can see the available operations and the expected input shape.
+
+For database work, that is a big deal.
+
+A Postgres MCP server can expose operations like:
+
+- list tables
+- describe table
+- create table
+- add column
+- run migration
+- query with parameters
+
+This keeps the agent inside a known contract instead of letting it improvise every step from scratch.
+
+## Why Postgres is a good fit for tool-based access
+
+PostgreSQL already has a rich, inspectable schema model and well-defined DDL commands like `CREATE TABLE` and `ALTER TABLE`. That makes it a strong candidate for structured agent tooling.
+
+The agent can:
+
+1. inspect current schema
+2. decide whether a change is needed
+3. call one targeted tool
+4. verify the outcome
+
+That workflow is much easier to reason about than a single prompt that asks the model to inspect, plan, mutate, and verify all at once.
+
+## Human review still matters
+
+One of the most useful parts of the MCP tools guidance is its emphasis on trust and safety. The protocol recommends keeping a human in the loop with the ability to deny tool invocations.
+
+That is exactly right for database changes.
+
+Even a good agent runtime should not normalize the idea that an LLM gets silent access to destructive production operations. The safest pattern is:
+
+- discovery tools are easy to call
+- state-mutating tools are explicit
+- dangerous operations are blocked or reviewed
+
+## Where Supabase-hosted Postgres fits
+
+Many teams experimenting with AI development are already using Supabase, which is built around a managed Postgres database. That makes the “Postgres MCP server” idea especially practical because you can keep the workflow close to the database platform you already use.
+
+In practice, teams usually want a runtime that can:
+
+- connect to a Postgres-compatible database
+- keep internal or sensitive tables protected
+- expose a narrow database toolset to agents
+
+That is more realistic than trying to expose the full database surface area on day one.
+
+## What to look for in a Postgres MCP server
+
+If you are comparing options, prioritize:
+
+- tool discovery with clear schemas
+- schema inspection support
+- migration-oriented actions
+- parameterized queries instead of string interpolation
+- safety rules around destructive SQL
+- compatibility with IDE agent workflows
+
+## A practical adoption path
+
+The fastest low-risk way to adopt a Postgres MCP server is:
+
+1. start in local development
+2. use read-heavy tools first
+3. add narrow write tools like `create_table` and `add_column`
+4. treat migrations as explicit, named operations
+5. keep a human review step for sensitive changes
+
+That pattern gives you useful AI leverage without pretending database automation is risk-free.
+
+## Sources and further reading
+
+- [Model Context Protocol tools](https://modelcontextprotocol.io/docs/concepts/tools)
+- [PostgreSQL `CREATE TABLE`](https://www.postgresql.org/docs/current/static/sql-createtable.html)
+- [PostgreSQL `ALTER TABLE`](https://www.postgresql.org/docs/current/sql-altertable.html)
+- [Supabase docs](https://supabase.com/docs)

@@ -1,0 +1,115 @@
+---
+title: "AI database tools for Postgres: what to use and what to avoid"
+description: "A practical guide to evaluating AI database tools for Postgres, including schema discovery, migrations, MCP support, and safety guardrails."
+publishedAt: "2026-03-14"
+readingTime: "6 min read"
+keywords:
+  - "AI database tools for Postgres"
+  - "Postgres AI tools"
+  - "AI schema migrations"
+author: "EnginiQ Team"
+sources:
+  - label: "PostgreSQL information_schema overview"
+    url: "https://www.postgresql.org/docs/current/information-schema.html"
+  - label: "PostgreSQL information_schema.tables"
+    url: "https://www.postgresql.org/docs/current/infoschema-tables.html"
+  - label: "PostgreSQL information_schema.columns"
+    url: "https://www.postgresql.org/docs/current/infoschema-columns.html"
+  - label: "PostgreSQL ALTER TABLE"
+    url: "https://www.postgresql.org/docs/current/sql-altertable.html"
+  - label: "Model Context Protocol tools"
+    url: "https://modelcontextprotocol.io/docs/concepts/tools"
+---
+
+# AI database tools for Postgres: what to use and what to avoid
+
+Teams experimenting with AI-assisted development quickly run into the same problem: an agent can suggest SQL, but production-grade database work needs more than a text box and a model.
+
+If you are evaluating **AI database tools for Postgres**, there are four things that matter much more than flashy demos:
+
+1. schema discovery
+2. safe schema changes
+3. migration tracking
+4. a trustworthy interface for agent actions
+
+## Start with schema discovery, not SQL generation
+
+The PostgreSQL documentation makes one thing very clear: the `information_schema` is a stable, standards-oriented way to inspect database objects. PostgreSQL exposes `information_schema.tables` and `information_schema.columns` specifically so you can query tables, columns, schemas, and related metadata in a portable way.
+
+That is a much better starting point for AI agents than asking a model to guess the state of a database from memory or from incomplete prompt context.
+
+For a practical AI workflow, the agent should be able to:
+
+- list public tables
+- inspect columns for a given table
+- reason about the current schema before making a change
+
+This is one of the main dividing lines between a real AI database tool and a thin “AI writes SQL for you” wrapper.
+
+## Postgres schema changes have real operational consequences
+
+PostgreSQL’s `ALTER TABLE` documentation also highlights an important operational fact: table changes can acquire strong locks, and the lock level varies by subcommand. That means schema changes are not just syntax problems. They are operational changes that can affect a live system.
+
+For that reason, useful Postgres AI tools should avoid the pattern of letting an agent emit arbitrary raw DDL with no checks. Instead, they should expose narrow, auditable operations like:
+
+- create table
+- add column
+- run migration
+
+Those actions are much easier to review, log, and guard than freeform SQL generation.
+
+## MCP is useful when you want agents to use tools instead of prompts alone
+
+According to the Model Context Protocol documentation, tools are meant to be discoverable, schema-described capabilities that models can invoke. The protocol also explicitly emphasizes a human-in-the-loop trust and safety model.
+
+That matters for Postgres workflows. A good **Postgres MCP server** lets an agent:
+
+- discover available tools
+- understand input schemas
+- invoke changes through a constrained tool surface
+
+This is a much better fit for real engineering teams than hoping prompt instructions alone will prevent risky queries.
+
+## What a strong AI Postgres tool should include
+
+If you are comparing tools, look for this minimum bar:
+
+- schema inspection through structured queries, ideally backed by `information_schema`
+- narrow schema mutation operations instead of unrestricted SQL
+- parameterized query support
+- migration recording
+- guardrails against destructive statements
+- compatibility with developer workflows such as CLI and MCP
+
+## What to avoid
+
+Be careful with tools that:
+
+- mostly rewrite obvious PostgreSQL documentation into prompts
+- do not show how they inspect actual schema state
+- encourage direct execution of arbitrary SQL in the happy path
+- have no migration history model
+- have no visible human review step for destructive operations
+
+Those products can feel productive during a demo and become stressful as soon as they touch a real database.
+
+## Why this matters for early-stage teams
+
+Early-stage teams want speed, but database mistakes are expensive. The right AI workflow should reduce repetitive database work while still respecting how PostgreSQL actually behaves in production.
+
+The pattern that makes the most sense today is:
+
+1. inspect current schema
+2. plan changes through structured tools
+3. record those changes as migrations
+4. verify the result against the live schema
+
+That is the direction tools like EnginiQ are targeting: an AI-safe runtime for Postgres rather than a generic “ask AI for SQL” experience.
+
+## Sources and further reading
+
+- [PostgreSQL information schema](https://www.postgresql.org/docs/current/information-schema.html)
+- [PostgreSQL `information_schema.tables`](https://www.postgresql.org/docs/current/infoschema-tables.html)
+- [PostgreSQL `information_schema.columns`](https://www.postgresql.org/docs/current/infoschema-columns.html)
+- [PostgreSQL `ALTER TABLE`](https://www.postgresql.org/docs/current/sql-altertable.html)
+- [Model Context Protocol tools](https://modelcontextprotocol.io/docs/concepts/tools)
