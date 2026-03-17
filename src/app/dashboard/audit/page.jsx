@@ -14,25 +14,31 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { auditEvents } from "@/lib/dashboardData";
+import { getAuditLogs } from "@/lib/db";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
-function resultBadge(result) {
-  if (result.includes("Blocked")) {
+function resultBadge(status) {
+  if (status === 'failed') {
     return "bg-red-200 text-red-950 hover:bg-red-200";
   }
 
-  if (result.includes("Approval")) {
+  if (status === 'preview') {
     return "bg-amber-200 text-amber-950 hover:bg-amber-200";
-  }
-
-  if (result.includes("Preview")) {
-    return "bg-sky-200 text-sky-950 hover:bg-sky-200";
   }
 
   return "bg-emerald-200 text-emerald-950 hover:bg-emerald-200";
 }
 
-export default function DashboardAuditPage() {
+export default async function DashboardAuditPage() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    return redirect("/login");
+  }
+
+  const auditEvents = await getAuditLogs(user.id);
   return (
     <div className="space-y-8 px-6 py-8 md:px-8">
       <div className="space-y-2">
@@ -74,14 +80,16 @@ export default function DashboardAuditPage() {
                   key={event.id}
                   className="border-white/[0.08] hover:bg-white/[0.03]"
                 >
-                  <TableCell className="text-zinc-400">{event.timestamp}</TableCell>
-                  <TableCell className="text-zinc-200">{event.project}</TableCell>
-                  <TableCell className="text-zinc-400">{event.actor}</TableCell>
-                  <TableCell className="font-mono text-zinc-300">{event.tool}</TableCell>
+                  <TableCell className="text-zinc-400">
+                    {new Date(event.created_at).toLocaleString()}
+                  </TableCell>
+                  <TableCell className="text-zinc-200">{event.project_name || 'Global'}</TableCell>
+                  <TableCell className="text-zinc-400">{event.actor_id}</TableCell>
+                  <TableCell className="font-mono text-zinc-300">{event.tool_name}</TableCell>
                   <TableCell className="text-zinc-400">{event.environment}</TableCell>
-                  <TableCell className="text-zinc-400">{event.trustMode}</TableCell>
+                  <TableCell className="text-zinc-400">-</TableCell>
                   <TableCell>
-                    <Badge className={resultBadge(event.result)}>{event.result}</Badge>
+                    <Badge className={resultBadge(event.status)}>{event.status}</Badge>
                   </TableCell>
                 </TableRow>
               ))}

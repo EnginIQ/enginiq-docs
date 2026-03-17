@@ -86,15 +86,7 @@ export default function DocsPage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
       <div className="mx-auto max-w-5xl space-y-14">
-        <div className="space-y-4">
-          <Link href="/" className="text-sm text-zinc-400 hover:text-zinc-200">
-            Back to home
-          </Link>
-          <div className="flex flex-wrap gap-4 text-sm text-zinc-500">
-            <Link href="/blog" className="hover:text-zinc-200">
-              Visit the blog
-            </Link>
-          </div>
+        <div className="space-y-4 pt-10">
           <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
             Try EnginiQ with Supabase or Postgres in 5 minutes
           </h1>

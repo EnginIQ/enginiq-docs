@@ -1,0 +1,18 @@
+[
+  {
+    "tool": "create_table",
+    "params": {
+      "table_name": "ai_feedback"
+    }
+  },
+  {
+    "tool": "add_column",
+    "params": {
+      "table": "ai_feedback",
+      "column": {
+        "name": "rating",
+        "type": "integer"
+      }
+    }
+  }
+]

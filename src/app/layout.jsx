@@ -48,10 +48,17 @@ export const metadata = {
   },
 };
 
+import { Toaster } from "sonner";
+import Navbar from "@/components/layout/Navbar";
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body className="antialiased">
+        <Navbar />
+        {children}
+        <Toaster richColors position="bottom-right" />
+      </body>
     </html>
   );
 }

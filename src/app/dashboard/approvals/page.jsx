@@ -7,9 +7,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { approvalQueue } from "@/lib/dashboardData";
+import { getApprovals } from "@/lib/db";
+import { createClient } from "@/utils/supabase/server";
+import { redirect } from "next/navigation";
 
-export default function DashboardApprovalsPage() {
+export default async function DashboardApprovalsPage() {
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+
+  if (!user) {
+    return redirect("/login");
+  }
+
+  const approvalQueue = await getApprovals(user.id);
   return (
     <div className="space-y-8 px-6 py-8 md:px-8">
       <div className="space-y-2">
@@ -38,15 +48,15 @@ export default function DashboardApprovalsPage() {
                   <div className="flex flex-wrap items-center gap-3">
                     <CardTitle>{item.summary}</CardTitle>
                     <Badge className="bg-amber-200 text-amber-950 hover:bg-amber-200">
-                      {item.tool}
+                      {item.tool_name}
                     </Badge>
                   </div>
                   <CardDescription className="mt-2 text-zinc-500">
-                    {item.project} • {item.environment} • requested by{" "}
-                    {item.actor}
+                    {item.project_name} • {item.environment} • requested by{" "}
+                    {item.actor_id}
                   </CardDescription>
                 </div>
-                <p className="text-sm text-zinc-500">{item.createdAt}</p>
+                <p className="text-sm text-zinc-500">{new Date(item.created_at).toLocaleString()}</p>
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
@@ -55,7 +65,7 @@ export default function DashboardApprovalsPage() {
                   SQL preview
                 </p>
                 <pre className="overflow-x-auto text-xs text-zinc-300">
-                  <code>{item.sqlPreview}</code>
+                  <code>{item.sql_preview}</code>
                 </pre>
               </div>
               <div className="flex flex-wrap gap-3">

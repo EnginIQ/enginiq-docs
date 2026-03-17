@@ -1,0 +1,13 @@
+{
+  "name": "enginiq-starter",
+  "version": "1.0.0",
+  "description": "Quickstart project for EnginiQ safe Postgres runtime",
+  "main": "index.js",
+  "dependencies": {
+    "enginiq-core": "latest",
+    "dotenv": "^16.0.0"
+  },
+  "scripts": {
+    "start": "node index.js"
+  }
+}

@@ -16,6 +16,7 @@ import {
   Code2,
   Layers,
   Lock,
+  Github,
 } from "lucide-react";
 
 const packageCards = [
@@ -105,130 +106,67 @@ export default function HomePage() {
           __html: JSON.stringify([organizationJsonLd, softwareJsonLd]),
         }}
       />
-      <header className="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.08] bg-[#0A0A0A]/80 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <div className="flex items-center space-x-3">
-            <div className="flex h-8 w-8 items-center justify-center rounded-md border border-white/10 bg-gradient-to-br from-zinc-700 to-zinc-800">
-              <span className="text-sm font-semibold text-zinc-100">EQ</span>
-            </div>
-            <span className="text-base font-semibold tracking-tight text-zinc-50">
-              EnginiQ
-            </span>
-          </div>
-          <nav className="hidden items-center space-x-1 md:flex">
-            <a
-              href="#product"
-              className="rounded-md px-3 py-2 text-sm text-zinc-400 transition-colors hover:bg-white/5 hover:text-zinc-50"
-            >
-              Product
-            </a>
-            <Link
-              href="/docs"
-              className="rounded-md px-3 py-2 text-sm text-zinc-400 transition-colors hover:bg-white/5 hover:text-zinc-50"
-            >
-              Docs
-            </Link>
-            <Link
-              href="/blog"
-              className="rounded-md px-3 py-2 text-sm text-zinc-400 transition-colors hover:bg-white/5 hover:text-zinc-50"
-            >
-              Blog
-            </Link>
-            <Link
-              href="/dashboard"
-              className="rounded-md px-3 py-2 text-sm text-zinc-400 transition-colors hover:bg-white/5 hover:text-zinc-50"
-            >
-              Dashboard
-            </Link>
-            <Link
-              href="/demo"
-              className="rounded-md px-3 py-2 text-sm text-zinc-400 transition-colors hover:bg-white/5 hover:text-zinc-50"
-            >
-              Demo
-            </Link>
-            <Link
-              href="/go-live"
-              className="rounded-md px-3 py-2 text-sm text-zinc-400 transition-colors hover:bg-white/5 hover:text-zinc-50"
-            >
-              Launch
-            </Link>
-            <a
-              href="https://github.com/enginiq"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-md px-3 py-2 text-sm text-zinc-400 transition-colors hover:bg-white/5 hover:text-zinc-50"
-            >
-              GitHub
-            </a>
-            <Button
-              asChild
-              className="ml-4 h-9 rounded-md bg-zinc-50 px-4 text-sm font-medium text-zinc-900 shadow-sm hover:bg-white"
-            >
-              <Link href="/docs">Get started</Link>
-            </Button>
-          </nav>
-        </div>
-      </header>
 
-      <section className="relative pb-20 pt-32 md:pb-32 md:pt-40">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(120,119,198,0.05),transparent_50%)]" />
+      <section id="hero" className="relative overflow-hidden pb-20 pt-32 md:pb-32 md:pt-48">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.05),transparent_50%)]" />
         <div className="relative mx-auto max-w-7xl px-6">
-          <div className="mx-auto max-w-4xl space-y-8 text-center">
+          <div className="mx-auto max-w-4xl space-y-12 text-center">
             <div
-              className={`space-y-6 transition-all duration-700 ${
-                isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+              className={`space-y-8 transition-all duration-1000 ${
+                isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
               }`}
             >
-              <div className="inline-flex items-center space-x-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-zinc-400">
-                <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
-                <span>v0.1 | Safe Postgres tooling</span>
+              <div className="inline-flex items-center space-x-2 rounded-full border border-white/[0.08] bg-white/[0.03] px-3 py-1.5 text-xs font-medium text-zinc-400 backdrop-blur-sm">
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                <span>v0.1 | Safe Postgres tooling for Agents</span>
               </div>
-              <h1 className="text-5xl font-semibold leading-[1.1] tracking-tight md:text-7xl">
-                The safe Postgres runtime
-                <br />
-                for{" "}
-                <span className="bg-gradient-to-r from-zinc-100 to-zinc-400 bg-clip-text text-transparent">
-                  AI agents
+              
+              <h1 className="text-6xl font-black leading-[1.05] tracking-tight text-white md:text-8xl">
+                The safe Postgres <br />
+                <span className="bg-gradient-to-b from-white to-zinc-500 bg-clip-text text-transparent">
+                  runtime for AI
                 </span>
               </h1>
-              <p className="mx-auto max-w-3xl text-lg font-light leading-relaxed text-zinc-400 md:text-xl">
-                EnginiQ gives AI agents a guardrailed way to work with
-                Postgres. Inspect schema, apply safe migrations, and run
-                parameterized queries without handing an agent unrestricted SQL
-                access.
-              </p>
-              <p className="mx-auto max-w-2xl text-sm uppercase tracking-[0.2em] text-zinc-500">
-                Built for Postgres and Supabase workflows
+              
+              <p className="mx-auto max-w-2xl text-lg font-medium leading-relaxed text-zinc-400 md:text-xl">
+                Stop giving agents unrestricted SQL access. Use EnginiQ to inspect schema, apply migrations, and run queries with built-in guardrails and approval workflows.
               </p>
             </div>
+
             <div
-              className={`flex flex-col justify-center gap-3 transition-all duration-700 delay-100 sm:flex-row ${
-                isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
+              className={`flex flex-col items-center justify-center gap-4 transition-all duration-1000 delay-200 sm:flex-row ${
+                isVisible ? "translate-y-0 opacity-100" : "translate-y-8 opacity-0"
               }`}
             >
               <Button
                 asChild
-                className="group h-11 rounded-lg bg-zinc-50 px-6 text-sm font-medium text-zinc-900 shadow-lg shadow-white/10 hover:bg-white"
+                size="lg"
+                className="group h-12 rounded-full bg-white px-8 text-base font-bold text-black shadow-[0_0_30px_rgba(255,255,255,0.15)] transition-all hover:scale-105 active:scale-95"
               >
                 <Link href="/docs">
-                  Try with Supabase or Postgres
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  Start Building
+                  <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
                 </Link>
               </Button>
+              
               <Button
                 asChild
                 variant="outline"
-                className="h-11 rounded-lg border-white/10 px-6 text-sm text-zinc-300 hover:bg-white/5 hover:text-zinc-50"
+                size="lg"
+                className="h-12 rounded-full border-white/10 px-8 text-base font-semibold text-zinc-200 backdrop-blur-sm transition-all hover:bg-white/5 active:scale-95"
               >
-                <Link href="/dashboard">View hosted preview</Link>
+                <Link href="/dashboard">View Dashboard</Link>
               </Button>
             </div>
-            <div className="flex flex-wrap justify-center gap-5 text-sm text-zinc-500">
-              <Link href="/demo" className="hover:text-zinc-300">
-                See the 5-minute demo
-              </Link>
-              <Link href="/waitlist" className="hover:text-zinc-300">
-                Join the waitlist
+            
+            <div 
+              className={`pt-4 transition-all duration-1000 delay-300 ${
+                isVisible ? "opacity-100" : "opacity-0"
+              }`}
+            >
+              <Link href="/demo" className="inline-flex items-center text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-300">
+                <span className="flex h-6 w-6 items-center justify-center rounded-full border border-zinc-800 mr-2 text-[10px]">▶</span>
+                Watch 2min quickstart demo
               </Link>
             </div>
           </div>
@@ -691,137 +629,102 @@ export default function HomePage() {
         </div>
       </section>
 
-      <section className="py-32">
-        <div className="mx-auto max-w-4xl px-6">
-          <div className="relative">
-            <div className="absolute inset-0 rounded-3xl bg-gradient-to-b from-white/[0.03] to-transparent" />
-            <Card className="relative rounded-3xl border-white/[0.08] bg-white/[0.02] p-12 text-center">
-              <div className="space-y-8">
-                <div className="space-y-4">
-                  <h2 className="text-3xl font-semibold tracking-tight md:text-4xl">
-                    Ready to give AI agents safe Postgres access?
-                  </h2>
-                  <p className="mx-auto max-w-2xl text-lg font-light text-zinc-400">
-                    Start with the quickstart, connect your Postgres database,
-                    and test the same guardrailed workflow through the SDK, CLI,
-                    or MCP server.
-                  </p>
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom,rgba(255,255,255,0.02),transparent_50%)]" />
+        <div className="mx-auto max-w-4xl px-6 relative">
+          <Card className="rounded-[2.5rem] border-white/[0.08] bg-white/[0.02] p-8 md:p-16 text-center backdrop-blur-sm overflow-hidden ring-1 ring-white/10">
+            <div className="space-y-10 relative">
+              <div className="space-y-4">
+                <h2 className="text-4xl font-bold tracking-tight md:text-5xl text-white">
+                  Ready to give agents <br /> safe Postgres access?
+                </h2>
+                <p className="mx-auto max-w-2xl text-lg font-medium text-zinc-400">
+                  Start with our developer first quickstart, connect your database,
+                  and test the guardrailed workflow in minutes.
+                </p>
               </div>
-              <div className="mx-auto max-w-2xl rounded-2xl border border-white/[0.08] bg-black/20 p-5 text-left">
-                <p className="mb-4 text-sm uppercase tracking-[0.2em] text-zinc-500">
-                  Waitlist
+              
+              <div className="flex flex-col justify-center gap-4 sm:flex-row">
+                <Button
+                  asChild
+                  size="lg"
+                  className="h-12 rounded-full bg-white px-8 text-base font-bold text-black shadow-lg transition-all hover:scale-105 active:scale-95"
+                >
+                  <Link href="/docs">
+                    Quickstart Guide
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Link>
+                </Button>
+                
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="h-12 rounded-full border-white/10 px-8 text-base font-semibold text-zinc-200 transition-all hover:bg-white/5 active:scale-95"
+                >
+                  <a href={siteConfig.githubUrl} target="_blank" rel="noopener noreferrer">
+                    View on GitHub
+                  </a>
+                </Button>
+              </div>
+
+              <div className="mx-auto max-w-md pt-6">
+                <p className="mb-4 text-xs font-bold uppercase tracking-[0.2em] text-zinc-500">
+                  Join the waitlist for Enterprise features
                 </p>
                 <WaitlistForm compact />
               </div>
-              <div className="flex flex-col justify-center gap-3 sm:flex-row">
-                  <Button
-                    asChild
-                    className="group h-11 rounded-lg bg-zinc-50 px-6 text-sm font-medium text-zinc-900 shadow-lg shadow-white/10 hover:bg-white"
-                  >
-                    <Link href="/docs">
-                      Try with Supabase or Postgres
-                      <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                    </Link>
-                  </Button>
-                  <Button
-                    asChild
-                    variant="outline"
-                    className="h-11 rounded-lg border-white/10 px-6 text-sm text-zinc-300 hover:bg-white/5 hover:text-zinc-50"
-                  >
-                    <a
-                      href="https://github.com/enginiq"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      View on GitHub
-                    </a>
-                  </Button>
-                </div>
-              </div>
-            </Card>
-          </div>
+            </div>
+          </Card>
         </div>
       </section>
 
-      <footer className="border-t border-white/[0.08] bg-[#0A0A0A] py-12">
+      <footer className="border-t border-white/[0.05] bg-[#0A0A0A] py-20 relative">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="flex flex-col items-start justify-between space-y-6 pb-8 md:flex-row md:items-center md:space-y-0">
-            <div className="flex items-center space-x-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-md border border-white/10 bg-gradient-to-br from-zinc-700 to-zinc-800">
-                <span className="text-sm font-semibold text-zinc-100">EQ</span>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+            <div className="col-span-1 md:col-span-2 space-y-6">
+              <div className="flex items-center space-x-3">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-gradient-to-br from-zinc-700 to-zinc-800 shadow-xl">
+                  <span className="text-xs font-bold text-zinc-100 italic">EQ</span>
+                </div>
+                <span className="text-lg font-bold tracking-tight text-white">
+                  {siteConfig.name}
+                </span>
               </div>
-              <div>
-                <p className="text-sm font-light text-zinc-400">
-                  EnginiQ | The safe Postgres runtime for AI agents
-                </p>
-                <p className="mt-0.5 text-xs text-zinc-600">
-                  v0.1 | Database tooling
-                </p>
-              </div>
+              <p className="max-w-xs text-sm font-medium text-zinc-500 leading-relaxed">
+                The safety layer between your AI agents and your production Postgres database.
+              </p>
             </div>
-            <nav className="flex items-center space-x-6">
-              <Link
-                href="/docs"
-                className="text-sm text-zinc-500 transition-colors hover:text-zinc-300"
-              >
-                Docs
-              </Link>
-              <Link
-                href="/blog"
-                className="text-sm text-zinc-500 transition-colors hover:text-zinc-300"
-              >
-                Blog
-              </Link>
-              <Link
-                href="/dashboard"
-                className="text-sm text-zinc-500 transition-colors hover:text-zinc-300"
-              >
-                Dashboard
-              </Link>
-              <Link
-                href="/demo"
-                className="text-sm text-zinc-500 transition-colors hover:text-zinc-300"
-              >
-                Demo
-              </Link>
-              <Link
-                href="/go-live"
-                className="text-sm text-zinc-500 transition-colors hover:text-zinc-300"
-              >
-                Launch
-              </Link>
-              <Link
-                href="/waitlist"
-                className="text-sm text-zinc-500 transition-colors hover:text-zinc-300"
-              >
-                Waitlist
-              </Link>
-              <a
-                href="https://github.com/enginiq"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm text-zinc-500 transition-colors hover:text-zinc-300"
-              >
-                GitHub
-              </a>
-              <Link
-                href="/terms"
-                className="text-sm text-zinc-500 transition-colors hover:text-zinc-300"
-              >
-                Terms
-              </Link>
-              <Link
-                href="/privacy"
-                className="text-sm text-zinc-500 transition-colors hover:text-zinc-300"
-              >
-                Privacy
-              </Link>
-            </nav>
+            
+            <div className="space-y-4">
+              <h4 className="text-sm font-bold uppercase tracking-widest text-zinc-100">Product</h4>
+              <nav className="flex flex-col space-y-2.5">
+                <Link href="/docs" className="text-sm text-zinc-500 hover:text-white transition-colors">Documentation</Link>
+                <Link href="/blog" className="text-sm text-zinc-500 hover:text-white transition-colors">Blog & Guides</Link>
+                <Link href="/demo" className="text-sm text-zinc-500 hover:text-white transition-colors">Product Demo</Link>
+                <a href={siteConfig.githubUrl} target="_blank" rel="noopener noreferrer" className="text-sm text-zinc-500 hover:text-white transition-colors">GitHub</a>
+              </nav>
+            </div>
+            
+            <div className="space-y-4">
+              <h4 className="text-sm font-bold uppercase tracking-widest text-zinc-100">Company</h4>
+              <nav className="flex flex-col space-y-2.5">
+                <Link href="/terms" className="text-sm text-zinc-500 hover:text-white transition-colors">Terms of Service</Link>
+                <Link href="/privacy" className="text-sm text-zinc-500 hover:text-white transition-colors">Privacy Policy</Link>
+                <a href={`mailto:${siteConfig.contactEmail}`} className="text-sm text-zinc-500 hover:text-white transition-colors">Contact Support</a>
+              </nav>
+            </div>
           </div>
-          <div className="border-t border-white/[0.05] pt-8">
-            <p className="text-center text-xs text-zinc-600">
-              Copyright 2026 EnginiQ. All rights reserved.
+          
+          <div className="flex flex-col md:flex-row justify-between items-center gap-6 border-t border-white/[0.05] pt-10">
+            <p className="text-xs font-medium text-zinc-600">
+              © 2026 {siteConfig.name}. Built for the agentic future.
             </p>
+            <div className="flex items-center space-x-6">
+              <a href={siteConfig.githubUrl} target="_blank" rel="noopener noreferrer" className="text-zinc-600 hover:text-white transition-colors">
+                <Github size={18} />
+              </a>
+            </div>
           </div>
         </div>
       </footer>

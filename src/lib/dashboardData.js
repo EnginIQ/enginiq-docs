@@ -149,3 +149,13 @@ export const policyChecklist = [
   "Block direct writes in development sandboxes",
   "Record actor and environment metadata for every tool run",
 ];
+export const billingData = {
+  currentPlan: "Hobby",
+  status: "Active",
+  usageMonthly: 148,
+  usageLimit: 1000,
+  nextBillingDate: "April 1, 2026",
+  invoiceHistory: [
+    { id: "inv_001", date: "2026-03-01", amount: "$0.00", status: "Paid" },
+  ],
+};

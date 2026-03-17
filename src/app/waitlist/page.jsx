@@ -15,10 +15,7 @@ export default function WaitlistPage() {
   return (
     <main className="min-h-screen bg-[#0A0A0A] px-6 py-16 text-zinc-50">
       <div className="mx-auto max-w-4xl space-y-10">
-        <div className="space-y-4">
-          <Link href="/" className="text-sm text-zinc-400 hover:text-zinc-200">
-            Back to home
-          </Link>
+        <div className="space-y-4 pt-10">
           <h1 className="text-4xl font-semibold tracking-tight md:text-5xl">
             Join the hosted-product waitlist
           </h1>

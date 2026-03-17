@@ -1,0 +1,60 @@
+---
+title: "Usage-based billing for AI database agents: why we chose Polar.sh"
+description: "A deep dive into the monetization model for EnginiQ and why Polar.sh is the right partner for developer-first usage-based billing."
+publishedAt: "2026-03-16"
+readingTime: "6 min read"
+keywords:
+  - "usage-based billing"
+  - "AI database agents"
+  - "Polar.sh"
+  - "SaaS monetization"
+author: "EnginiQ Team"
+---
+
+# Usage-based billing for AI database agents: why we chose Polar.sh
+
+As we move EnginiQ from a core runtime toward a full-scale control plane, one of the most important components we had to design was our monetization model.
+
+Building a developer tool for AI agents presents a unique challenge for billing: how do you charge fairly for a system that can run thousands of operations in seconds, but where safety and trust are the primary value drivers?
+
+## The "Safe Execution" Metric
+
+In most SaaS products, you charge per seat. But for EnginiQ, the value isn't just in how many people use the dashboard—it's in how many safe, audited operations the agents perform.
+
+We decided on **tool execution counts** as our primary usage metric. 
+
+- **Hobby Users**: Get a generous free tier of safe schema discovery and local dev tools.
+- **Pro Teams**: Benefit from higher limits, dedicated audit storage, and team-based approval workflows.
+
+## Why Polar.sh?
+
+When it came to implementing this, we chose [Polar.sh](https://polar.sh) as our payment and subscription partner. For a developer-first product, Polar offers three critical advantages:
+
+### 1. Developer-First SDK
+Integration was seamless. Using the `@polar-sh/sdk`, we were able to implement subscription checks directly into our core engine's execution lifecycle in under an hour.
+
+### 2. Built-in usage grants
+Polar's "Benefit" system allows us to link specific products (like our Pro plan) directly to access rights in our system. This means when a user upgrades on Polar, their `usage_limit` is automatically updated in our database via their secure webhook system.
+
+### 3. Modern, lean interface
+We want EnginiQ to feel modern and fast. Polar's checkout and customer portal align perfectly with our aesthetic of "premium, dark-mode, high-performance tooling."
+
+## How it works under the hood
+
+In the latest v0.1 update, every time an agent calls `runTool`, the EnginiQ core performs a three-step check:
+
+1. **Identity**: It identifies the `actor_id` (the developer or specific agent).
+2. **Subscription**: It checks our local `enginiq_subscriptions` cache (synced with Polar).
+3. **Usage Enforcement**: It counts successful tool runs for the current billing period using our `AuditLogger`.
+
+If a user hits their limit, the engine doesn't just crash—it returns a structured `USAGE_LIMIT_REACHED` error with a link to their Polar checkout page to upgrade.
+
+## Building for the long term
+
+Monetization isn't just about revenue; it's about building a sustainable ecosystem. By choosing a usage-based model powered by Polar, we ensure that as agents get more powerful and run more operations, EnginiQ can continue to scale its security and audit infrastructure alongside them.
+
+We're excited to see how teams use the Pro tier to secure their production Postgres workflows.
+
+---
+> [!TIP]
+> You can preview the billing management interface right now in our [Hosted Dashboard](/dashboard/billing).

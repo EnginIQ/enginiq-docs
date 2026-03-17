@@ -1,12 +1,14 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { siteConfig } from "@/lib/site";
-import { LayoutDashboard, ShieldCheck, ScrollText, DatabaseZap } from "lucide-react";
+import { LayoutDashboard, ShieldCheck, ScrollText, DatabaseZap, CreditCard, Settings, LogOut } from "lucide-react";
 
 const navItems = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard },
   { href: "/dashboard/approvals", label: "Approvals", icon: ShieldCheck },
   { href: "/dashboard/audit", label: "Audit log", icon: ScrollText },
+  { href: "/dashboard/billing", label: "Billing", icon: CreditCard },
+  { href: "/dashboard/settings", label: "Settings", icon: Settings },
 ];
 
 export const metadata = {
@@ -45,7 +47,7 @@ export default function DashboardLayout({ children }) {
               </p>
             </div>
 
-            <nav className="mt-8 space-y-2">
+            <nav className="mt-8 space-y-2 flex-1">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
@@ -56,6 +58,15 @@ export default function DashboardLayout({ children }) {
                   <span>{item.label}</span>
                 </Link>
               ))}
+              <form action="/auth/signout" method="post">
+                <button
+                  type="submit"
+                  className="w-full flex items-center gap-3 rounded-xl border border-transparent px-3 py-2.5 text-sm text-zinc-400 transition-colors hover:border-white/[0.08] hover:bg-white/[0.03] hover:text-red-400"
+                >
+                  <LogOut className="h-4 w-4" />
+                  <span>Sign out</span>
+                </button>
+              </form>
             </nav>
 
             <div className="mt-auto rounded-2xl border border-white/[0.08] bg-white/[0.03] p-4">
