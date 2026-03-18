@@ -17,7 +17,8 @@ export default function NewProjectPage() {
   const [formData, setFormData] = useState({
     name: "",
     environment: "development",
-    database_url: "",
+    supabase_url: "",
+    supabase_key: "",
     trust_mode: "dry_run",
   });
 
@@ -125,19 +126,33 @@ export default function NewProjectPage() {
               </div>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="database_url">Database Connection String</Label>
-              <Input
-                id="database_url"
-                type="password"
-                placeholder="postgresql://postgres:password@db.supabase.co:5432/postgres"
-                className="border-white/10 bg-black/20"
-                value={formData.database_url}
-                onChange={(e) => setFormData({ ...formData, database_url: e.target.value })}
-                required
-              />
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="supabase_url">Supabase URL</Label>
+                <Input
+                  id="supabase_url"
+                  placeholder="https://xyz.supabase.co"
+                  className="border-white/10 bg-black/20"
+                  value={formData.supabase_url}
+                  onChange={(e) => setFormData({ ...formData, supabase_url: e.target.value })}
+                  required
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="supabase_key">Supabase Service Role Key</Label>
+                <Input
+                  id="supabase_key"
+                  type="password"
+                  placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+                  className="border-white/10 bg-black/20"
+                  value={formData.supabase_key}
+                  onChange={(e) => setFormData({ ...formData, supabase_key: e.target.value })}
+                  required
+                />
+              </div>
               <p className="text-xs text-zinc-500">
-                Connection strings are encrypted at rest. We never store them as plain text.
+                URL and Service Role Key are used to securely interact with your database via the Supabase API.
               </p>
             </div>
 

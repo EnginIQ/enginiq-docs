@@ -11,18 +11,18 @@ export async function POST(req) {
   }
 
   try {
-    const { name, environment, database_url, trust_mode } = await req.json();
+    const { name, environment, supabase_url, supabase_key, trust_mode } = await req.json();
 
-    if (!name || !database_url) {
+    if (!name || !supabase_url || !supabase_key) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 });
     }
 
     // Insert the project into the database
     const result = await query(
-      `INSERT INTO enginiq_projects (owner_id, name, environment, database_type, trust_mode) 
-       VALUES ($1, $2, $3, $4, $5) 
+      `INSERT INTO enginiq_projects (owner_id, name, environment, database_type, trust_mode, supabase_url, supabase_key) 
+       VALUES ($1, $2, $3, $4, $5, $6, $7) 
        RETURNING *`,
-      [user.id, name, environment || 'development', 'Supabase Postgres', trust_mode || 'dry_run']
+      [user.id, name, environment || 'development', 'Supabase Postgres', trust_mode || 'dry_run', supabase_url, supabase_key]
     );
 
     return NextResponse.json({ success: true, project: result[0] });

@@ -29,7 +29,7 @@ It gives agents:
 
 There’s also a hosted preview with approvals + audit logs.
 
-Docs, demo, and waitlist: https://enginiq.dev`,
+Docs, demo, and waitlist: http://localhost:3000`,
   linkedin: `I’ve been building EnginiQ, a safe Postgres runtime for AI agents.
 
 The core idea is simple: AI should be useful for database work without getting unrestricted SQL access.
@@ -44,7 +44,7 @@ I also put together a hosted-product preview with projects, approvals, and audit
 
 If you’re working with Postgres or Supabase and want AI-assisted workflows that feel safer and more auditable, I’d love feedback.
 
-Docs and demo: https://enginiq.dev`,
+Docs and demo: http://localhost:3000`,
   hackernews_title: "Show HN: EnginiQ, a safe Postgres runtime for AI agents",
   reddit: `I’m working on EnginiQ, a safe Postgres runtime for AI agents.
 
@@ -53,5 +53,5 @@ The goal is to let agents inspect schema, preview changes, run safe migrations, 
 There’s also a hosted preview with approval queue and audit log concepts.
 
 I’d love feedback from people using Postgres or Supabase with Cursor, Claude, or agent workflows:
-https://enginiq.dev`,
+http://localhost:3000`,
 };

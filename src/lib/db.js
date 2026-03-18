@@ -1,17 +1,32 @@
-import { Client } from 'pg';
-
 export async function query(text, params) {
-    const client = new Client({
-        connectionString: process.env.DATABASE_URL,
-        ssl: { rejectUnauthorized: false }
-    });
-    await client.connect();
-    try {
-        const res = await client.query(text, params);
-        return res.rows;
-    } finally {
-        await client.end();
+    const url = process.env.SUPABASE_URL;
+    const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+
+    if (!url || !key) {
+        throw new Error('SUPABASE_URL or SUPABASE_SERVICE_ROLE_KEY is not defined.');
     }
+
+    const response = await fetch(`${url}/rest/v1/rpc/exec_sql`, {
+        method: 'POST',
+        headers: {
+            'apikey': key,
+            'Authorization': `Bearer ${key}`,
+            'Content-Type': 'application/json',
+            'Prefer': 'params=single-object'
+        },
+        body: JSON.stringify({
+            sql_query: text,
+            params: params || []
+        })
+    });
+
+    if (!response.ok) {
+        const errorText = await response.text();
+        throw new Error(`DB Query Error: ${errorText}`);
+    }
+
+    const data = await response.json();
+    return Array.isArray(data) ? data : [data];
 }
 
 export async function getDashboardStats(actorId) {
@@ -20,10 +35,14 @@ export async function getDashboardStats(actorId) {
     const stats = [];
 
     // 1. Projects count
-    const projects = await query('SELECT COUNT(*) FROM enginiq_projects WHERE owner_id = $1', [actorId]);
+    const projects = await query(
+        'SELECT COUNT(*) FROM enginiq_projects WHERE owner_id = $1',
+        [actorId]
+    );
+    const projectsCount = parseInt(projects[0]?.count || '0', 10);
     stats.push({
         label: "Connected projects",
-        value: projects[0].count,
+        value: projectsCount,
         detail: "Active project environments"
     });
 
@@ -32,9 +51,10 @@ export async function getDashboardStats(actorId) {
         'SELECT COUNT(*) FROM enginiq_approvals WHERE actor_id = $1 AND status = $2',
         [actorId, 'pending']
     );
+    const approvalsCount = parseInt(approvals[0]?.count || '0', 10);
     stats.push({
         label: "Pending approvals",
-        value: approvals[0].count,
+        value: approvalsCount,
         detail: "Awaiting decision"
     });
 
@@ -43,9 +63,10 @@ export async function getDashboardStats(actorId) {
         'SELECT COUNT(*) FROM enginiq_audit_logs WHERE actor_id = $1 AND status = $2',
         [actorId, 'success']
     );
+    const auditCount = parseInt(audit[0]?.count || '0', 10);
     stats.push({
         label: "Successful actions",
-        value: audit[0].count,
+        value: auditCount,
         detail: "Executed tools"
     });
 
@@ -54,9 +75,10 @@ export async function getDashboardStats(actorId) {
         'SELECT COUNT(*) FROM enginiq_audit_logs WHERE actor_id = $1 AND status = $2',
         [actorId, 'failed']
     );
+    const blockedCount = parseInt(blocked[0]?.count || '0', 10);
     stats.push({
         label: "Blocked actions",
-        value: blocked[0].count,
+        value: blockedCount,
         detail: "Security/Guardrail blocks"
     });
 

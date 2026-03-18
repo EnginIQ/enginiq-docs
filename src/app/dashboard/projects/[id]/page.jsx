@@ -67,7 +67,7 @@ export default async function ProjectDetailPage(props) {
           </CardHeader>
           <CardContent>
             <p className="text-lg font-medium">{project.database_type}</p>
-            <p className="mt-1 font-mono text-xs text-zinc-500">postgresql://***:***@***</p>
+            <p className="mt-1 font-mono text-[10px] text-zinc-500 truncate">{project.supabase_url}</p>
           </CardContent>
         </Card>
 

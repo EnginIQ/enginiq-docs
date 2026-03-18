@@ -6,7 +6,10 @@ async function main() {
   const engine = new Engine();
   
   // 2. Connect to Database (Supabase or Postgres)
-  const connector = new SupabaseConnector(process.env.DATABASE_URL || 'postgresql://postgres:postgres@localhost:5432/postgres');
+  const connector = new SupabaseConnector(
+    process.env.SUPABASE_URL || 'https://xyz.supabase.co',
+    process.env.SUPABASE_SERVICE_ROLE_KEY || 'service-role-key'
+  );
   engine.setConnector(connector);
   
   // 3. Register safe tools

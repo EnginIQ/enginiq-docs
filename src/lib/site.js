@@ -15,7 +15,7 @@ export const siteConfig = {
     "Postgres schema automation",
     "EnginiQ",
   ],
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "https://enginiq.dev",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
   githubUrl: "https://github.com/enginiq",
   contactEmail: "hello@enginiq.dev",
   ogImage: "/opengraph-image",
