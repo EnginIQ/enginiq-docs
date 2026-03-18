@@ -1,4 +1,5 @@
 import "@/app/globals.css";
+import { Toaster } from "sonner";
 import { siteConfig } from "@/lib/site";
 
 export const metadata = {
@@ -48,14 +49,10 @@ export const metadata = {
   },
 };
 
-import { Toaster } from "sonner";
-import Navbar from "@/components/layout/Navbar";
-
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className="antialiased">
-        <Navbar />
         {children}
         <Toaster richColors position="bottom-right" />
       </body>
