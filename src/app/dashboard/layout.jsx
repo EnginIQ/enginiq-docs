@@ -18,6 +18,21 @@ export const metadata = {
   alternates: {
     canonical: "/dashboard",
   },
+  openGraph: {
+    title: "Hosted dashboard preview | EnginiQ",
+    description:
+      "Hosted-product preview for EnginiQ with projects, approval queue, and audit logs.",
+    url: "/dashboard",
+    siteName: siteConfig.name,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hosted dashboard preview | EnginiQ",
+    description:
+      "Hosted-product preview for EnginiQ with projects, approval queue, and audit logs.",
+    images: [siteConfig.ogImage],
+  },
   robots: {
     index: false,
     follow: false,

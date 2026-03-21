@@ -6,6 +6,18 @@ export const metadata = {
   alternates: {
     canonical: "/privacy",
   },
+  openGraph: {
+    title: "EnginiQ Privacy",
+    description: "Privacy notice for EnginiQ.",
+    url: "/privacy",
+    images: ["/opengraph-image"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "EnginiQ Privacy",
+    description: "Privacy notice for EnginiQ.",
+    images: ["/opengraph-image"],
+  },
   robots: {
     index: false,
     follow: false,

@@ -27,6 +27,20 @@ export const metadata = {
   alternates: {
     canonical: "/launch",
   },
+  openGraph: {
+    title: "Launch assets | EnginiQ",
+    description:
+      "Launch kit for EnginiQ with example repo outline, demo video script, and distribution assets.",
+    url: "/launch",
+    images: ["/opengraph-image"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Launch assets | EnginiQ",
+    description:
+      "Launch kit for EnginiQ with example repo outline, demo video script, and distribution assets.",
+    images: ["/opengraph-image"],
+  },
   robots: {
     index: false,
     follow: false,

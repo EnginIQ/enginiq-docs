@@ -6,6 +6,18 @@ export const metadata = {
   alternates: {
     canonical: "/terms",
   },
+  openGraph: {
+    title: "EnginiQ Terms",
+    description: "Terms of service for EnginiQ.",
+    url: "/terms",
+    images: ["/opengraph-image"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "EnginiQ Terms",
+    description: "Terms of service for EnginiQ.",
+    images: ["/opengraph-image"],
+  },
   robots: {
     index: false,
     follow: false,

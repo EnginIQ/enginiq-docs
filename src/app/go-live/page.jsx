@@ -9,6 +9,20 @@ export const metadata = {
   alternates: {
     canonical: "/go-live",
   },
+  openGraph: {
+    title: "Go-live checklist | EnginiQ",
+    description:
+      "Execution checklist for launching EnginiQ, deploying the docs app, and submitting the sitemap to Google Search Console.",
+    url: "/go-live",
+    images: ["/opengraph-image"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Go-live checklist | EnginiQ",
+    description:
+      "Execution checklist for launching EnginiQ, deploying the docs app, and submitting the sitemap to Google Search Console.",
+    images: ["/opengraph-image"],
+  },
   robots: {
     index: false,
     follow: false,
