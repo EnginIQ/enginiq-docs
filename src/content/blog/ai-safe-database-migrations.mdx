@@ -21,7 +21,7 @@ sources:
 
 # AI-safe database migrations: a practical launch checklist
 
-There is a difference between “AI can generate migration SQL” and “AI can help run safe database migrations.”
+There is a difference between "AI can generate migration SQL" and "AI can help run safe database migrations."
 
 If you want a migration workflow people can actually trust, you need a tighter operational model than raw prompt-to-SQL generation.
 
@@ -39,7 +39,7 @@ This helps the agent avoid duplicate or unnecessary changes and gives the human 
 
 ## 2. Prefer explicit operations over arbitrary migration text
 
-PostgreSQL’s `CREATE TABLE` and `ALTER TABLE` commands are powerful, but power is exactly why you should not let an AI system invent unrestricted database changes in a black box.
+PostgreSQL's `CREATE TABLE` and `ALTER TABLE` commands are powerful, but power is exactly why you should not let an AI system invent unrestricted database changes in a black box.
 
 A safer system exposes explicit operations like:
 
@@ -47,13 +47,13 @@ A safer system exposes explicit operations like:
 - add column
 - run migration
 
-That lets you define what “normal” schema evolution looks like and reserve unusual operations for manual handling.
+That lets you define what "normal" schema evolution looks like and reserve unusual operations for manual handling.
 
 ## 3. Treat locking as part of migration safety
 
 One of the most important details in the PostgreSQL `ALTER TABLE` documentation is that lock levels vary by subcommand, and some changes can take strong locks. That means a migration is not only a syntax change. It is a runtime event that can affect application behavior.
 
-This is why “AI-safe migrations” must include operational awareness. At minimum, your workflow should distinguish between:
+This is why "AI-safe migrations" must include operational awareness. At minimum, your workflow should distinguish between:
 
 - harmless inspection
 - simple additive changes
@@ -94,9 +94,9 @@ The best AI migration workflow is not one where the model acts alone. It is one 
 
 ## Write for trust, not only for speed
 
-Google’s Search Central guidance on people-first content is also a good product lesson here: useful content and useful tools both work better when they are built for real user outcomes rather than shortcuts.
+Google's Search Central guidance on people-first content is also a good product lesson here: useful content and useful tools both work better when they are built for real user outcomes rather than shortcuts.
 
-For database migrations, the real user outcome is not “the AI wrote SQL fast.” It is “the schema changed safely, predictably, and with enough context that the team trusts the result.”
+For database migrations, the real user outcome is not "the AI wrote SQL fast." It is "the schema changed safely, predictably, and with enough context that the team trusts the result."
 
 That is the bar worth optimizing for.
 
@@ -106,3 +106,4 @@ That is the bar worth optimizing for.
 - [PostgreSQL information schema](https://www.postgresql.org/docs/current/information-schema.html)
 - [PostgreSQL `ALTER TABLE`](https://www.postgresql.org/docs/current/sql-altertable.html)
 - [PostgreSQL `CREATE TABLE`](https://www.postgresql.org/docs/current/static/sql-createtable.html)
+

@@ -1,3 +1,17 @@
+const rawSiteUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+
+if (process.env.NODE_ENV === "production" && !rawSiteUrl) {
+  throw new Error("NEXT_PUBLIC_SITE_URL must be set in production.");
+}
+
+const normalizedSiteUrl = (rawSiteUrl || "http://localhost:3000").replace(/\/+$/, "");
+
+try {
+  new URL(normalizedSiteUrl);
+} catch {
+  throw new Error(`Invalid NEXT_PUBLIC_SITE_URL: ${normalizedSiteUrl}`);
+}
+
 export const siteConfig = {
   name: "EnginiQ",
   title: "EnginiQ | The safe Postgres runtime for AI agents",
@@ -15,8 +29,9 @@ export const siteConfig = {
     "Postgres schema automation",
     "EnginiQ",
   ],
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000",
+  siteUrl: normalizedSiteUrl,
   githubUrl: "https://github.com/enginiq",
   contactEmail: "hello@enginiq.dev",
   ogImage: "/opengraph-image",
+  creator: "EnginiQ Team",
 };

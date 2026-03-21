@@ -1,3 +1,5 @@
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://enginiq.dev";
+
 export const launchChecklist = [
   "Set NEXT_PUBLIC_SITE_URL to your live domain in Vercel.",
   "Configure Supabase Auth: Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY to Vercel.",
@@ -27,10 +29,10 @@ It gives agents:
 - dry-run / read-only / approval modes
 - MCP support for Cursor and Claude-style workflows
 
-There’s also a hosted preview with approvals + audit logs.
+There's also a hosted preview with approvals + audit logs.
 
-Docs, demo, and waitlist: http://localhost:3000`,
-  linkedin: `I’ve been building EnginiQ, a safe Postgres runtime for AI agents.
+Docs, demo, and waitlist: ${siteUrl}`,
+  linkedin: `I've been building EnginiQ, a safe Postgres runtime for AI agents.
 
 The core idea is simple: AI should be useful for database work without getting unrestricted SQL access.
 
@@ -42,16 +44,17 @@ What EnginiQ does today:
 
 I also put together a hosted-product preview with projects, approvals, and audit logs so the product direction is visible.
 
-If you’re working with Postgres or Supabase and want AI-assisted workflows that feel safer and more auditable, I’d love feedback.
+If you're working with Postgres or Supabase and want AI-assisted workflows that feel safer and more auditable, I'd love feedback.
 
-Docs and demo: http://localhost:3000`,
+Docs and demo: ${siteUrl}`,
   hackernews_title: "Show HN: EnginiQ, a safe Postgres runtime for AI agents",
-  reddit: `I’m working on EnginiQ, a safe Postgres runtime for AI agents.
+  reddit: `I'm working on EnginiQ, a safe Postgres runtime for AI agents.
 
 The goal is to let agents inspect schema, preview changes, run safe migrations, and work through SDK / CLI / MCP without handing them unrestricted SQL access.
 
-There’s also a hosted preview with approval queue and audit log concepts.
+There's also a hosted preview with approval queue and audit log concepts.
 
-I’d love feedback from people using Postgres or Supabase with Cursor, Claude, or agent workflows:
-http://localhost:3000`,
+I'd love feedback from people using Postgres or Supabase with Cursor, Claude, or agent workflows:
+${siteUrl}`,
 };
+

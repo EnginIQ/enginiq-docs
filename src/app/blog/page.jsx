@@ -14,6 +14,15 @@ export const metadata = {
     description:
       "Guides about AI database tools, Postgres MCP workflows, and safe database migrations for agent-driven development.",
     url: "/blog",
+    siteName: siteConfig.name,
+    images: [siteConfig.ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "EnginiQ Blog | AI database tools and Postgres MCP guides",
+    description:
+      "Guides about AI database tools, Postgres MCP workflows, and safe database migrations for agent-driven development.",
+    images: [siteConfig.ogImage],
   },
 };
 

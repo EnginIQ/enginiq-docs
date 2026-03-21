@@ -176,7 +176,7 @@ export default function HomePage() {
                 className="inline-flex items-center text-sm font-medium text-zinc-500 transition-colors hover:text-zinc-300"
               >
                 <span className="flex h-6 w-6 items-center justify-center rounded-full border border-zinc-800 mr-2 text-[10px]">
-                  ▶
+                  {"\u003e"}
                 </span>
                 Watch 2min quickstart demo
               </Link>
@@ -800,4 +800,5 @@ export default function HomePage() {
     </div>
   );
 }
+
 

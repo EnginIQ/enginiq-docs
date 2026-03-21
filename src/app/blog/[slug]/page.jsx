@@ -26,6 +26,7 @@ export async function generateMetadata({ params }) {
     title: post.title,
     description: post.description,
     keywords: post.keywords,
+    authors: [{ name: post.author }],
     alternates: {
       canonical: `/blog/${post.slug}`,
     },
@@ -35,6 +36,14 @@ export async function generateMetadata({ params }) {
       url: `/blog/${post.slug}`,
       type: "article",
       publishedTime: post.publishedAt,
+      authors: [post.author],
+      images: [siteConfig.ogImage],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} | EnginiQ`,
+      description: post.description,
+      images: [siteConfig.ogImage],
     },
   };
 }

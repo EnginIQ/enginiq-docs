@@ -10,8 +10,16 @@ export const metadata = {
   },
   description: siteConfig.description,
   keywords: siteConfig.keywords,
+  authors: [{ name: siteConfig.creator }],
+  creator: siteConfig.creator,
+  publisher: siteConfig.name,
   category: "developer tools",
   applicationName: siteConfig.name,
+  icons: {
+    icon: "/icon.svg",
+    shortcut: "/icon.svg",
+    apple: "/icon.svg",
+  },
   alternates: {
     canonical: "/",
   },

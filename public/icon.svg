@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="EnginiQ logo">
+  <defs>
+    <linearGradient id="tile" x1="10" y1="10" x2="54" y2="54" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3F3F46" />
+      <stop offset="1" stop-color="#27272A" />
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="16" fill="#0A0A0A" />
+  <rect x="8" y="8" width="48" height="48" rx="12" fill="url(#tile)" stroke="rgba(255,255,255,0.12)" />
+  <text
+    x="32"
+    y="38"
+    text-anchor="middle"
+    fill="#F4F4F5"
+    font-size="19"
+    font-style="italic"
+    font-weight="700"
+    font-family="Georgia, 'Times New Roman', serif"
+    letter-spacing="-1.2"
+  >
+    EQ
+  </text>
+</svg>

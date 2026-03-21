@@ -44,11 +44,11 @@ For a practical AI workflow, the agent should be able to:
 - inspect columns for a given table
 - reason about the current schema before making a change
 
-This is one of the main dividing lines between a real AI database tool and a thin “AI writes SQL for you” wrapper.
+This is one of the main dividing lines between a real AI database tool and a thin "AI writes SQL for you" wrapper.
 
 ## Postgres schema changes have real operational consequences
 
-PostgreSQL’s `ALTER TABLE` documentation also highlights an important operational fact: table changes can acquire strong locks, and the lock level varies by subcommand. That means schema changes are not just syntax problems. They are operational changes that can affect a live system.
+PostgreSQL's `ALTER TABLE` documentation also highlights an important operational fact: table changes can acquire strong locks, and the lock level varies by subcommand. That means schema changes are not just syntax problems. They are operational changes that can affect a live system.
 
 For that reason, useful Postgres AI tools should avoid the pattern of letting an agent emit arbitrary raw DDL with no checks. Instead, they should expose narrow, auditable operations like:
 
@@ -104,7 +104,7 @@ The pattern that makes the most sense today is:
 3. record those changes as migrations
 4. verify the result against the live schema
 
-That is the direction tools like EnginiQ are targeting: an AI-safe runtime for Postgres rather than a generic “ask AI for SQL” experience.
+That is the direction tools like EnginiQ are targeting: an AI-safe runtime for Postgres rather than a generic "ask AI for SQL" experience.
 
 ## Sources and further reading
 
@@ -113,3 +113,4 @@ That is the direction tools like EnginiQ are targeting: an AI-safe runtime for P
 - [PostgreSQL `information_schema.columns`](https://www.postgresql.org/docs/current/infoschema-columns.html)
 - [PostgreSQL `ALTER TABLE`](https://www.postgresql.org/docs/current/sql-altertable.html)
 - [Model Context Protocol tools](https://modelcontextprotocol.io/docs/concepts/tools)
+

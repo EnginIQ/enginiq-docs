@@ -2,6 +2,14 @@ import Link from "next/link";
 
 export const metadata = {
   title: "EnginiQ Privacy",
+  description: "Privacy notice for EnginiQ.",
+  alternates: {
+    canonical: "/privacy",
+  },
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function PrivacyPage() {

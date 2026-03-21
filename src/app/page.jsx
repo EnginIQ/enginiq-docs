@@ -9,7 +9,7 @@ export const metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "EnginiQ – Safe Postgres runtime for AI agents",
+    title: "EnginiQ - Safe Postgres runtime for AI agents",
     description:
       "Give AI agents safe, guardrailed access to Postgres with EnginiQ: schema discovery, migrations, approvals, and audit visibility.",
     url: siteConfig.siteUrl,
@@ -25,7 +25,7 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "EnginiQ – Safe Postgres runtime for AI agents",
+    title: "EnginiQ - Safe Postgres runtime for AI agents",
     description:
       "Guardrailed Postgres tooling for AI agents: schema discovery, migrations, approvals, and audit visibility.",
     images: [siteConfig.ogImage],
@@ -35,4 +35,3 @@ export const metadata = {
 export default function Page() {
   return <HomePage />;
 }
-

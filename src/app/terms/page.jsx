@@ -2,6 +2,14 @@ import Link from "next/link";
 
 export const metadata = {
   title: "EnginiQ Terms",
+  description: "Terms of service for EnginiQ.",
+  alternates: {
+    canonical: "/terms",
+  },
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function TermsPage() {

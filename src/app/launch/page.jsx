@@ -27,6 +27,10 @@ export const metadata = {
   alternates: {
     canonical: "/launch",
   },
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function LaunchPage() {
@@ -122,9 +126,9 @@ export default function LaunchPage() {
                 Angle 3
               </p>
               <p className="mt-2 text-zinc-300">
-                The real product is not “AI writes SQL.” The real product is
-                “AI gets a safe Postgres workflow with previews, policies, and
-                traceability.”
+                The real product is not "AI writes SQL." The real product is
+                "AI gets a safe Postgres workflow with previews, policies, and
+                traceability."
               </p>
             </div>
           </CardContent>
@@ -189,3 +193,4 @@ export default function LaunchPage() {
     </main>
   );
 }
+

@@ -9,6 +9,10 @@ export const metadata = {
   alternates: {
     canonical: "/go-live",
   },
+  robots: {
+    index: false,
+    follow: false,
+  },
 };
 
 export default function GoLivePage() {
