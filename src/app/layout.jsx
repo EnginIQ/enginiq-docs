@@ -2,6 +2,7 @@ import "@/app/globals.css";
 import { Toaster } from "sonner";
 import { siteConfig } from "@/lib/site";
 import { buildOrganizationJsonLd, buildWebsiteJsonLd } from "@/lib/seo";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
@@ -75,6 +76,7 @@ export default function RootLayout({ children }) {
         />
         {children}
         <Toaster richColors position="bottom-right" />
+        <Analytics />
       </body>
     </html>
   );
