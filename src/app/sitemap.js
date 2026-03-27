@@ -1,7 +1,18 @@
 import { siteConfig } from "@/lib/site";
 import { getAllPosts } from "@/lib/blog";
 
-const routes = ["", "/docs", "/blog", "/demo", "/waitlist"];
+const routes = [
+  "",
+  "/docs",
+  "/blog",
+  "/demo",
+  "/waitlist",
+  "/pricing",
+  "/privacy",
+  "/terms",
+  "/why-not-raw-ai-sql",
+  "/supabase",
+];
 
 export default async function sitemap() {
   const now = new Date();
@@ -16,7 +27,7 @@ export default async function sitemap() {
 
   const articleRoutes = blogPosts.map((post) => ({
     url: `${siteConfig.siteUrl}/blog/${post.slug}`,
-    lastModified: new Date(post.publishedAt),
+    lastModified: new Date(post.updatedAt || post.publishedAt),
     changeFrequency: "monthly",
     priority: 0.8,
   }));

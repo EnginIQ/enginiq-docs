@@ -13,15 +13,21 @@ function estimateReadingTime(content) {
   return `${minutes} min read`;
 }
 
-function normalizePost(frontmatter, slug, rawContent) {
+function getWordCount(content) {
+  return content.trim().split(/\s+/).filter(Boolean).length;
+}
+
+function normalizePost(frontmatter, slug, rawContent, updatedAt) {
   return {
     slug,
     title: frontmatter.title,
     description: frontmatter.description,
     publishedAt: frontmatter.publishedAt,
+    updatedAt: frontmatter.updatedAt || updatedAt,
     readingTime: frontmatter.readingTime || estimateReadingTime(rawContent),
     keywords: frontmatter.keywords || [],
     author: frontmatter.author || "EnginiQ Team",
+    wordCount: getWordCount(rawContent),
   };
 }
 
@@ -33,9 +39,10 @@ export async function getAllPosts() {
       .map(async (file) => {
         const fullPath = path.join(BLOG_DIR, file);
         const source = await fs.readFile(fullPath, "utf8");
+        const stats = await fs.stat(fullPath);
         const { data, content } = matter(source);
         const slug = file.replace(/\.mdx$/, "");
-        return normalizePost(data, slug, content);
+        return normalizePost(data, slug, content, stats.mtime.toISOString());
       })
   );
 
@@ -47,6 +54,7 @@ export async function getAllPosts() {
 export async function getPostBySlug(slug) {
   const fullPath = path.join(BLOG_DIR, `${slug}.mdx`);
   const source = await fs.readFile(fullPath, "utf8");
+  const stats = await fs.stat(fullPath);
 
   const { content, frontmatter } = await compileMDX({
     source,
@@ -60,7 +68,7 @@ export async function getPostBySlug(slug) {
   });
 
   return {
-    ...normalizePost(frontmatter, slug, source),
+    ...normalizePost(frontmatter, slug, source, stats.mtime.toISOString()),
     content,
     sources: frontmatter.sources || [],
   };

@@ -1,15 +1,17 @@
 import Link from "next/link";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { WaitlistForm } from "@/components/waitlist-form";
+import { buildPageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata = buildPageMetadata({
   title: "Waitlist",
   description:
     "Join the EnginiQ waitlist for hosted approvals, audit logs, and safe Postgres workflows for AI agents.",
-  alternates: {
-    canonical: "/waitlist",
-  },
-};
+  path: "/waitlist",
+  openGraphTitle: "Waitlist | EnginiQ",
+  openGraphDescription:
+    "Request early access to EnginiQ's hosted approvals, audit trails, and safer AI-assisted Postgres workflows.",
+});
 
 export default function WaitlistPage() {
   return (

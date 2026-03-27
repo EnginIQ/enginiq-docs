@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { buildPageMetadata } from "@/lib/seo";
 
 const steps = [
   {
@@ -45,14 +46,15 @@ const steps = [
   },
 ];
 
-export const metadata = {
+export const metadata = buildPageMetadata({
   title: "Product demo",
   description:
     "See the 5-step EnginiQ demo path for safe AI-assisted Postgres workflows.",
-  alternates: {
-    canonical: "/demo",
-  },
-};
+  path: "/demo",
+  openGraphTitle: "Product demo | EnginiQ",
+  openGraphDescription:
+    "A concise product walkthrough showing how EnginiQ makes AI-assisted Postgres changes preview-first and reviewable.",
+});
 
 export default function DemoPage() {
   return (

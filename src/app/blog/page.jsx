@@ -1,19 +1,20 @@
 import Link from "next/link";
 import { getAllPosts } from "@/lib/blog";
 import { siteConfig } from "@/lib/site";
+import { absoluteUrl } from "@/lib/seo";
 
 export const metadata = {
   title: "Blog",
   description:
     "Guides about AI database tools, Postgres MCP workflows, and safe database migrations for agent-driven development.",
   alternates: {
-    canonical: "/blog",
+    canonical: absoluteUrl("/blog"),
   },
   openGraph: {
     title: "EnginiQ Blog | AI database tools and Postgres MCP guides",
     description:
       "Guides about AI database tools, Postgres MCP workflows, and safe database migrations for agent-driven development.",
-    url: "/blog",
+    url: absoluteUrl("/blog"),
     siteName: siteConfig.name,
     images: [siteConfig.ogImage],
   },

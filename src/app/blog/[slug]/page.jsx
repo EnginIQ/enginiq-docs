@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllPosts, getPostBySlug } from "@/lib/blog";
+import { buildBlogPostingJsonLd, buildPageMetadata, absoluteUrl } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
 export async function generateStaticParams() {
@@ -23,27 +24,32 @@ export async function generateMetadata({ params }) {
   }
 
   return {
-    title: post.title,
-    description: post.description,
-    keywords: post.keywords,
+    ...buildPageMetadata({
+      title: post.title,
+      description: post.description,
+      path: `/blog/${post.slug}`,
+      keywords: post.keywords,
+      openGraphTitle: `${post.title} | EnginiQ`,
+      type: "article",
+    }),
     authors: [{ name: post.author }],
-    alternates: {
-      canonical: `/blog/${post.slug}`,
-    },
     openGraph: {
       title: `${post.title} | EnginiQ`,
       description: post.description,
-      url: `/blog/${post.slug}`,
+      url: absoluteUrl(`/blog/${post.slug}`),
       type: "article",
+      siteName: siteConfig.name,
       publishedTime: post.publishedAt,
+      modifiedTime: post.updatedAt || post.publishedAt,
       authors: [post.author],
-      images: [siteConfig.ogImage],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${post.title} | EnginiQ`,
-      description: post.description,
-      images: [siteConfig.ogImage],
+      images: [
+        {
+          url: siteConfig.ogImage,
+          width: 1200,
+          height: 630,
+          alt: `${siteConfig.name} social preview`,
+        },
+      ],
     },
   };
 }
@@ -62,22 +68,7 @@ export default async function BlogPostPage({ params }) {
     notFound();
   }
 
-  const articleJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Article",
-    headline: post.title,
-    description: post.description,
-    datePublished: post.publishedAt,
-    author: {
-      "@type": "Organization",
-      name: siteConfig.name,
-    },
-    publisher: {
-      "@type": "Organization",
-      name: siteConfig.name,
-    },
-    mainEntityOfPage: `${siteConfig.siteUrl}/blog/${post.slug}`,
-  };
+  const articleJsonLd = buildBlogPostingJsonLd(post);
 
   return (
     <main className="min-h-screen bg-[#0A0A0A] px-6 py-16 text-zinc-50">

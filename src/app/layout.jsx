@@ -1,6 +1,7 @@
 import "@/app/globals.css";
 import { Toaster } from "sonner";
 import { siteConfig } from "@/lib/site";
+import { buildOrganizationJsonLd, buildWebsiteJsonLd } from "@/lib/seo";
 
 export const metadata = {
   metadataBase: new URL(siteConfig.siteUrl),
@@ -58,9 +59,20 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
+  const organizationJsonLd = buildOrganizationJsonLd();
+  const websiteJsonLd = buildWebsiteJsonLd();
+
   return (
     <html lang="en">
       <body className="antialiased">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
         {children}
         <Toaster richColors position="bottom-right" />
       </body>
