@@ -239,8 +239,8 @@ export default function HomePage() {
                 That matters for teams using Postgres in production, Supabase
                 for app backends, or MCP-connected developer workflows in Cursor
                 and Claude. Search demand will often come from phrases like
-                "Postgres MCP", "AI database migrations", and "safe SQL for AI
-                agents", and those are exactly the workflows this product is
+                &quot;Postgres MCP&quot;, &quot;AI database migrations&quot;, and &quot;safe SQL for AI
+                agents&quot;, and those are exactly the workflows this product is
                 positioned to serve.
               </p>
             </div>

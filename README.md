@@ -16,6 +16,16 @@ npm run clean
 npm run dev
 ```
 
+## Open-source readiness
+
+If you plan to open this repository for programs like **GirlScript Summer of Code (GSSoC)**, we recommend keeping these files in the root:
+
+- `CONTRIBUTING.md`
+- `CODE_OF_CONDUCT.md`
+- `.env.example`
+
+These are now included to help first-time contributors onboard faster.
+
 ## Production build
 
 ```bash
