@@ -140,9 +140,9 @@ export default function LaunchPage() {
                 Angle 3
               </p>
               <p className="mt-2 text-zinc-300">
-                The real product is not "AI writes SQL." The real product is
-                "AI gets a safe Postgres workflow with previews, policies, and
-                traceability."
+                The real product is not &quot;AI writes SQL.&quot; The real product is
+                &quot;AI gets a safe Postgres workflow with previews, policies, and
+                traceability.&quot;
               </p>
             </div>
           </CardContent>
